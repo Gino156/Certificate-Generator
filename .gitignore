@@ -1,0 +1,23 @@
+# Visual Studio / C# Ignore
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# NuGet Packages (Para hindi sumama ang mga mabibigat na packages folder)
+packages/
+*.nupkg
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+
+# Environment / OS specific
+.env
+.DS_Store
+Thumbs.db

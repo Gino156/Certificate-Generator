@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.36617.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenCertUI", "CertGenerate\GenCertUI.csproj", "{98EEBFFE-808C-45E3-98E4-A61C7A7E872D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{FD4B9B5A-028C-4C66-A6CD-BE7CC85AF665}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{ADA1C25F-6604-40BE-B979-F5F620F492E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98EEBFFE-808C-45E3-98E4-A61C7A7E872D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98EEBFFE-808C-45E3-98E4-A61C7A7E872D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98EEBFFE-808C-45E3-98E4-A61C7A7E872D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98EEBFFE-808C-45E3-98E4-A61C7A7E872D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD4B9B5A-028C-4C66-A6CD-BE7CC85AF665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD4B9B5A-028C-4C66-A6CD-BE7CC85AF665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD4B9B5A-028C-4C66-A6CD-BE7CC85AF665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD4B9B5A-028C-4C66-A6CD-BE7CC85AF665}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADA1C25F-6604-40BE-B979-F5F620F492E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADA1C25F-6604-40BE-B979-F5F620F492E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADA1C25F-6604-40BE-B979-F5F620F492E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADA1C25F-6604-40BE-B979-F5F620F492E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED13C5C3-F9A5-48B1-B9A9-D4CAF1F48BE9}
+	EndGlobalSection
+EndGlobal

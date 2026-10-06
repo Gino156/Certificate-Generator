@@ -91,7 +91,7 @@ namespace CertGenerate.Company
             .Where(emp => emp != null)
             .ToList();
 
-            if (employees == null && employees.Count == 0) return;
+            if (employees == null || employees.Count == 0) return;
             switch (reportType)
             {
                 case "Employee of the Month":
@@ -99,11 +99,16 @@ namespace CertGenerate.Company
                     break;
 
                 case "5 Years Tenurity":
-                    ReportLauncher.ShowReport(new FiveYearsTenure(employees));
+                    var eligibleEmployees = employees
+                        .Where(emp => emp.HireDate != null && emp.HireDate.Value <= DateTime.Today.AddYears(-5))
+                        .ToList();
+                    if (eligibleEmployees.Count > 0)
+                    {
+                        ReportLauncher.ShowReport(new FiveYearsTenure(eligibleEmployees));
+                    }
                     break;
             }
         }
-
 
         private void BindControls()
         {

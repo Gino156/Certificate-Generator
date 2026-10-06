@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.36617.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenCertUI", "CertGenerate\GenCertUI.csproj", "{98EEBFFE-808C-45E3-98E4-A61C7A7E872D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "CertGenerate\Presentation.csproj", "{98EEBFFE-808C-45E3-98E4-A61C7A7E872D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{FD4B9B5A-028C-4C66-A6CD-BE7CC85AF665}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "Service\BusinessLogicLayer.csproj", "{FD4B9B5A-028C-4C66-A6CD-BE7CC85AF665}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{ADA1C25F-6604-40BE-B979-F5F620F492E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "Model\DataAccessLayer.csproj", "{ADA1C25F-6604-40BE-B979-F5F620F492E8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

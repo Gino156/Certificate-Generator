@@ -79,10 +79,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Company\Certificate.cs">
+    <Compile Include="Company\Reports\Certificate.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Company\Certificate.Designer.cs">
+    <Compile Include="Company\Reports\Certificate.Designer.cs">
       <DependentUpon>Certificate.cs</DependentUpon>
     </Compile>
     <Compile Include="Company\EmployeeEditForm.cs">
@@ -91,17 +91,17 @@
     <Compile Include="Company\EmployeeEditForm.Designer.cs">
       <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Company\EmployeeList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Company\EmployeeList.Designer.cs">
-      <DependentUpon>EmployeeList.cs</DependentUpon>
-    </Compile>
     <Compile Include="Company\EmployeeList2.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Company\EmployeeList2.Designer.cs">
       <DependentUpon>EmployeeList2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Company\Reports\FiveYearsTenure.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Company\Reports\FiveYearsTenure.Designer.cs">
+      <DependentUpon>FiveYearsTenure.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\ControlExtension.cs" />
     <Compile Include="Extensions\ReportLauncher.cs" />
@@ -114,17 +114,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Company\Certificate.resx">
+    <EmbeddedResource Include="Company\Reports\Certificate.resx">
       <DependentUpon>Certificate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Company\EmployeeEditForm.resx">
       <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Company\EmployeeList.resx">
-      <DependentUpon>EmployeeList.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Company\EmployeeList2.resx">
       <DependentUpon>EmployeeList2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company\Reports\FiveYearsTenure.resx">
+      <DependentUpon>FiveYearsTenure.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -153,13 +153,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj">
+    <ProjectReference Include="..\Model\DataAccessLayer.csproj">
       <Project>{ADA1C25F-6604-40BE-B979-F5F620F492E8}</Project>
-      <Name>Model</Name>
+      <Name>DataAccessLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Service\Service.csproj">
+    <ProjectReference Include="..\Service\BusinessLogicLayer.csproj">
       <Project>{fd4b9b5a-028c-4c66-a6cd-be7cc85af665}</Project>
-      <Name>Service</Name>
+      <Name>BusinessLogicLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

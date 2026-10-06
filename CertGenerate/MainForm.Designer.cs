@@ -73,7 +73,7 @@
             // 
             this.aceEmployee.Name = "aceEmployee";
             this.aceEmployee.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.aceEmployee.Text = "Employee";
+            this.aceEmployee.Text = "Employees";
             // 
             // documentManager1
             // 

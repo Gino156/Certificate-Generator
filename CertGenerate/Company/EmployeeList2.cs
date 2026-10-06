@@ -33,7 +33,7 @@ namespace CertGenerate.Company
 
         private void InitButtonActions()
         {
-            bbiNew.ItemClick += (o, e) =>
+            bbiNew.ItemClick += (o, e) => //New Employee
             {
                 splitContainerControl1.Collapsed = false;
                 lcg.ClearDataBindings();
@@ -41,29 +41,33 @@ namespace CertGenerate.Company
                 btnSave.Enabled = true;
                 BindControls();
             };
-            bbiDelete.ItemClick += async (o, e) =>
+            bbiDelete.ItemClick += async (o, e) => //Delete Employee
             {
                 await Delete();
             };
-            bbiBulkGenerate.ItemClick += (o, e) =>
+            bbiBulkGenerate.ItemClick += (o, e) => //Employee of the Month
             {
-                //await BulkGenerate();
-                BulkGenerateCertificate();
+                GenerateReport("Employee of the Month");
+            };
+            bbiFiveYears.ItemClick += (o, e) => //5 Years Tenure
+            {
+                GenerateReport("5 Years Tenurity");
+            };
+            barListItem1.ListItemClick += (o, e) => //Dropdown Template
+            {
+                string selected = barListItem1.Strings[e.Index];
+                GenerateReport(selected);
             };
 
-            gvEmployee2.Click += async (o, e) =>
+            gvEmployee2.Click += async (o, e) => //Click Employee
             {
                 await GetSelectedEmployee();
                 splitContainerControl1.Collapsed = false;
             };
 
-            btnSave.Click += async (o, e) =>
+            btnSave.Click += async (o, e) => //Save Employee
             {
                 await Save();
-            };
-            btnGenerate.Click += (o, e) =>
-            {
-               // BulkGenerateCertificate();
             };
         }
 
@@ -80,31 +84,29 @@ namespace CertGenerate.Company
             btnSave.Enabled = true;
         }
 
-        private void BulkGenerateCertificate()
+        private void GenerateReport(string reportType) //Generate Multiple Report
         {
-            var selectedRows = gvEmployee2.GetSelectedRows();
-            List<int> ids = new List<int>();
-            if(selectedRows != null)
+            var employees = gvEmployee2.GetSelectedRows()?
+            .Select(rowHandle => gvEmployee2.GetRow(rowHandle) as vw_Employee)
+            .Where(emp => emp != null)
+            .ToList();
+
+            if (employees == null && employees.Count == 0) return;
+            switch (reportType)
             {
-                foreach(var rowHandle in selectedRows)
-                {
-                    var id = (int)gvEmployee2.GetRowCellValue(rowHandle, nameof(vw_Employee.EmployeeID));
-                    ids.Add(id);
-                }
-            }
-            var datasource = gcEmployee2.DataSource as List<vw_Employee>;
-            if(datasource != null)
-            {
-                var employees = datasource.Where(x => ids.Contains(x.EmployeeID)).ToList();
-                IReport report = new Certificate(employees);
-                ReportLauncher.ShowReport(report);
+                case "Employee of the Month":
+                    ReportLauncher.ShowReport(new Certificate(employees));
+                    break;
+
+                case "5 Years Tenurity":
+                    ReportLauncher.ShowReport(new FiveYearsTenure(employees));
+                    break;
             }
         }
 
 
         private void BindControls()
         {
-
             lcg.ClearDataBindings();
 
             var mode = DataSourceUpdateMode.OnPropertyChanged;
@@ -112,6 +114,7 @@ namespace CertGenerate.Company
             txtDepartment.DataBindings.Add("EditValue", _employee, nameof(_employee.Department), true, mode);
             txtPosition.DataBindings.Add("EditValue", _employee, nameof(_employee.Position), true, mode);
             cmbStatus.DataBindings.Add("EditValue", _employee, nameof(_employee.Status), true, mode);
+            txtHireDate.DataBindings.Add("EditValue", _employee, nameof(_employee.HireDate), true, mode);
             
         }
 
@@ -194,66 +197,5 @@ namespace CertGenerate.Company
             }
         }
 
-        //private void GenerateCert()
-        //{
-        //    try
-        //    {
-        //        if (_employee == null)
-        //        {
-        //            XtraMessageBox.Show("No items found to generate report.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            return;
-        //        }
-
-        //        var report = new Certificate(new List<Employee> { _employee });
-        //        ReportLauncher.ShowReport(report);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.Message);
-        //    }
-        //}
-
-        //private async Task BulkGenerate()
-        //{
-        //    try
-        //    {
-        //        gvEmployee2.PostEditor();
-        //        gvEmployee2.UpdateCurrentRow();
-
-        //        var list = gcEmployee2.DataSource as List<vw_Employee>;
-        //        if (list == null || !list.Any())
-        //        {
-        //            XtraMessageBox.Show(" Walang data na mahanap sa grid.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            return;
-        //        }
-
-        //        var selectedViewEmployees = list.Where(x => x.IsSelected).ToList();
-
-        //        if (!selectedViewEmployees.Any())
-        //        {
-        //            XtraMessageBox.Show(" Mangyaring pumili muna ng kahit isang empleyado gamit ang checkbox.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //            return;
-        //        }
-
-        //        var service = new EmployeeService();
-        //        var selectedEmployees = new List<Employee>();
-
-        //        foreach (var viewEmp in selectedViewEmployees)
-        //        {
-        //            var emp = await service.GetByIdAsync(viewEmp.EmployeeID);
-        //            if (emp != null)
-        //            {
-        //                selectedEmployees.Add(emp);
-        //            }
-        //        }
-
-        //        var report = new Certificate(selectedEmployees);
-        //        ReportLauncher.ShowReport(report);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        XtraMessageBox.Show($" Nagkaroon ng error sa pag-generate ng certificate: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //}
     }
 }

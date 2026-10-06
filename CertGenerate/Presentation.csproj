@@ -85,12 +85,6 @@
     <Compile Include="Company\Reports\Certificate.Designer.cs">
       <DependentUpon>Certificate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Company\EmployeeEditForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Company\EmployeeEditForm.Designer.cs">
-      <DependentUpon>EmployeeEditForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Company\EmployeeList2.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -122,9 +116,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Company\Reports\Certificate.resx">
       <DependentUpon>Certificate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Company\EmployeeEditForm.resx">
-      <DependentUpon>EmployeeEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Company\EmployeeList2.resx">
       <DependentUpon>EmployeeList2.cs</DependentUpon>

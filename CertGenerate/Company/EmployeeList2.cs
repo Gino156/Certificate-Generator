@@ -12,6 +12,7 @@ using Model;
 using CertGenerate.Extensions;
 using Service.Employee;
 using DevExpress.XtraReports;
+using CertGenerate.Company.Reports;
 
 namespace CertGenerate.Company
 {
@@ -107,6 +108,17 @@ namespace CertGenerate.Company
                         ReportLauncher.ShowReport(new FiveYearsTenure(eligibleEmployees));
                     }
                     break;
+
+                case "OJT Completion":
+                    var onlyOJT = employees
+                        .Where(emp => emp.IsOJT == true)
+                        .ToList();
+                    if(onlyOJT.Count > 0)
+                    {
+                        ReportLauncher.ShowReport(new OJTCompletion(onlyOJT));
+                    }
+                    break;
+
             }
         }
 
@@ -120,7 +132,7 @@ namespace CertGenerate.Company
             txtPosition.DataBindings.Add("EditValue", _employee, nameof(_employee.Position), true, mode);
             cmbStatus.DataBindings.Add("EditValue", _employee, nameof(_employee.Status), true, mode);
             txtHireDate.DataBindings.Add("EditValue", _employee, nameof(_employee.HireDate), true, mode);
-            
+            tsOJT.DataBindings.Add("EditValue", _employee, nameof(_employee.IsOJT), true, mode);
         }
 
         private async Task LoadDataSource()

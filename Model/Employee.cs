@@ -20,5 +20,6 @@ namespace Model
         public string Position { get; set; }
         public string Status { get; set; }
         public Nullable<System.DateTime> HireDate { get; set; }
+        public Nullable<bool> IsOJT { get; set; }
     }
 }

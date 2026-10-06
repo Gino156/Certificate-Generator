@@ -103,6 +103,12 @@
     <Compile Include="Company\Reports\FiveYearsTenure.Designer.cs">
       <DependentUpon>FiveYearsTenure.cs</DependentUpon>
     </Compile>
+    <Compile Include="Company\Reports\OJTCompletion.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Company\Reports\OJTCompletion.Designer.cs">
+      <DependentUpon>OJTCompletion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Extensions\ControlExtension.cs" />
     <Compile Include="Extensions\ReportLauncher.cs" />
     <Compile Include="Extensions\GridExtension.cs" />
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Company\Reports\FiveYearsTenure.resx">
       <DependentUpon>FiveYearsTenure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company\Reports\OJTCompletion.resx">
+      <DependentUpon>OJTCompletion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

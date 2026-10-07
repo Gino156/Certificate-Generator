@@ -28,6 +28,7 @@ namespace CertGenerate
                 switch (e.Document.ControlName)
                 {
                     case nameof(EmployeeList2): e.Control = PrepareUserControl(new EmployeeList2()); break;
+                    case nameof(EventList): e.Control = PrepareUserControl(new EventList()); break;
                 }
             };
 
@@ -41,7 +42,8 @@ namespace CertGenerate
                 UpdateRibbonMerge(tabbedView1.ActiveDocument?.Control as XtraUserControl);
             };
 
-            aceEmployee.Click += (o, e) => LoadDocument("Employee", nameof(EmployeeList2));
+            aceEmployee.Click += (o, e) => LoadDocument("Employees", nameof(EmployeeList2));
+            aceEvent.Click += (o, e) => LoadDocument("Events", nameof(EventList));
         }
 
         private Control PrepareUserControl(XtraUserControl uc)

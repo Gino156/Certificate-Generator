@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Employee\EventService.cs" />
     <Compile Include="Extensions\ServiceExtension.cs" />
     <Compile Include="GenericServices.cs" />
     <Compile Include="Employee\EmployeeService.cs" />

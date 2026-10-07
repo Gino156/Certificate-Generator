@@ -16,6 +16,15 @@
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="HireDate" Type="date" />
           <Property Name="IsOJT" Type="bit" />
+          <Property Name="BirthDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -33,9 +42,21 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a pri
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="HireDate" Type="date" />
           <Property Name="IsOJT" Type="bit" />
+          <Property Name="BirthDate" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CertProjectDB.dbo.vw_Event' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventName" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
         </EntityType>
         <EntityContainer Name="CertProjectDBModelStoreContainer">
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vw_Employee" EntityType="Self.vw_Employee" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_Employee].[EmployeeID] AS [EmployeeID], 
@@ -44,8 +65,16 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a pri
     [vw_Employee].[Position] AS [Position], 
     [vw_Employee].[Status] AS [Status], 
     [vw_Employee].[HireDate] AS [HireDate], 
-    [vw_Employee].[IsOJT] AS [IsOJT]
+    [vw_Employee].[IsOJT] AS [IsOJT], 
+    [vw_Employee].[BirthDate] AS [BirthDate]
     FROM [dbo].[vw_Employee] AS [vw_Employee]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vw_Event" EntityType="Self.vw_Event" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_Event].[EventId] AS [EventId], 
+    [vw_Event].[EventName] AS [EventName], 
+    [vw_Event].[Description] AS [Description]
+    FROM [dbo].[vw_Event] AS [vw_Event]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -55,6 +84,8 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a pri
         <EntityContainer Name="CertProjectDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Employees" EntityType="CertProjectDBModel.Employee" />
           <EntitySet Name="vw_Employee" EntityType="CertProjectDBModel.vw_Employee" />
+          <EntitySet Name="Events" EntityType="CertProjectDBModel.Event" />
+          <EntitySet Name="vw_Event" EntityType="CertProjectDBModel.vw_Event" />
         </EntityContainer>
         <EntityType Name="Employee">
           <Key>
@@ -67,6 +98,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a pri
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HireDate" Type="DateTime" Precision="0" />
           <Property Name="IsOJT" Type="Boolean" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="vw_Employee">
           <Key>
@@ -82,6 +114,23 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a pri
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HireDate" Type="DateTime" Precision="0" />
           <Property Name="IsOJT" Type="Boolean" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vw_Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -92,6 +141,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a pri
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="CertProjectDBModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="IsOJT" ColumnName="IsOJT" />
                 <ScalarProperty Name="HireDate" ColumnName="HireDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -105,6 +155,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a pri
           <EntitySetMapping Name="vw_Employee">
             <EntityTypeMapping TypeName="CertProjectDBModel.vw_Employee">
               <MappingFragment StoreEntitySet="vw_Employee">
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="IsOJT" ColumnName="IsOJT" />
                 <ScalarProperty Name="HireDate" ColumnName="HireDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
@@ -112,6 +163,24 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a pri
                 <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="CertProjectDBModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Event">
+            <EntityTypeMapping TypeName="CertProjectDBModel.vw_Event">
+              <MappingFragment StoreEntitySet="vw_Event">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -7,6 +7,8 @@
       <Diagram DiagramId="d1f61f591f6f42d788819821bf527d89" Name="Diagram1">
         <EntityTypeShape EntityType="CertProjectDBModel.Employee" Width="1.5" PointX="4.875" PointY="0.75" />
         <EntityTypeShape EntityType="CertProjectDBModel.vw_Employee" Width="1.5" PointX="2.75" PointY="0.75" FillColor="Yellow" />
+        <EntityTypeShape EntityType="CertProjectDBModel.Event" Width="1.5" PointX="4.875" PointY="4.25" />
+        <EntityTypeShape EntityType="CertProjectDBModel.vw_Event" Width="1.5" PointX="2.75" PointY="4.25" FillColor="Yellow" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

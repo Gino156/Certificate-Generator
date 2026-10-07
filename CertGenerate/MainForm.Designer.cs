@@ -36,6 +36,7 @@
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.aceEvent = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
@@ -64,7 +65,8 @@
             // aceCompany1
             // 
             this.aceCompany1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.aceEmployee});
+            this.aceEmployee,
+            this.aceEvent});
             this.aceCompany1.Expanded = true;
             this.aceCompany1.Name = "aceCompany1";
             this.aceCompany1.Text = "FTP Main";
@@ -98,6 +100,12 @@
             this.ribbon.Name = "ribbon";
             this.ribbon.Size = new System.Drawing.Size(1049, 58);
             // 
+            // aceEvent
+            // 
+            this.aceEvent.Name = "aceEvent";
+            this.aceEvent.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.aceEvent.Text = "Events";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,6 +135,7 @@
         private DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView tabbedView1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbon;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement aceEvent;
     }
 }
 

@@ -13,6 +13,7 @@ using CertGenerate.Extensions;
 using Service.Employee;
 using DevExpress.XtraReports;
 using CertGenerate.Company.Reports;
+using DevExpress.XtraEditors.Filtering.Templates;
 
 namespace CertGenerate.Company
 {
@@ -119,6 +120,20 @@ namespace CertGenerate.Company
                     }
                     break;
 
+                case "Birthday":
+                    var bdayNow = employees
+                        .Where(emp => emp.BirthDate.HasValue &&
+                                      emp.BirthDate.Value.Month == DateTime.Today.Month &&
+                                      emp.BirthDate.Value.Day == DateTime.Today.Day)
+                        .ToList();
+
+                    if (bdayNow.Count > 0)
+                    {
+                        //ReportLauncher.ShowReport(new BirthdayCertificate(bdayNow));
+                    }
+                    break;
+
+
             }
         }
 
@@ -131,8 +146,9 @@ namespace CertGenerate.Company
             txtDepartment.DataBindings.Add("EditValue", _employee, nameof(_employee.Department), true, mode);
             txtPosition.DataBindings.Add("EditValue", _employee, nameof(_employee.Position), true, mode);
             cmbStatus.DataBindings.Add("EditValue", _employee, nameof(_employee.Status), true, mode);
-            txtHireDate.DataBindings.Add("EditValue", _employee, nameof(_employee.HireDate), true, mode);
+            dtHireDate.DataBindings.Add("EditValue", _employee, nameof(_employee.HireDate), true, mode);
             tsOJT.DataBindings.Add("EditValue", _employee, nameof(_employee.IsOJT), true, mode);
+            dtBirthDate.DataBindings.Add("EditValue", _employee, nameof(_employee.BirthDate), true, mode);
         }
 
         private async Task LoadDataSource()

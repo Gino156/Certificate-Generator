@@ -33,29 +33,6 @@ namespace CertGenerate.Company
             var datasource = await service.GetViewAsync();
             gcEvent.DataSource = datasource;
         }
-        private async Task LoadCalendarAsync(string calendar)
-        {
-            var now = DateTime.Now;
-            var firstDay = new DateTime(now.Year, now.Month, 1);
-            var lastDay = firstDay.AddMonths(1).AddDays(-1);
-
-            schedulerControl1.Start = firstDay;
-
-            var employeeList = await new EmployeeService().GetViewAsync();
-            if (employeeList == null) return;
-
-            schedulerDataStorage1.Appointments.DataSource = employeeList
-                .Where(emp => emp.BirthDate.HasValue)
-                .Select(emp => new
-                {
-                    Subject = $"🎉 Happy Birthday {emp.FullName}!",
-                    StartDate = new DateTime(now.Year, emp.BirthDate.Value.Month, emp.BirthDate.Value.Day),
-                    EndDate = new DateTime(now.Year, emp.BirthDate.Value.Month, emp.BirthDate.Value.Day),
-                    AllDay = true,
-                    LabelId = 8
-                })
-                .ToList();
-        }
 
         private void InitButtonActions()
         {
@@ -71,14 +48,65 @@ namespace CertGenerate.Company
             {
                 await EditEvent();
             };
-            gvEvent.FocusedRowChanged += async(o, e) =>
+
+            gvEvent.FocusedRowChanged += async (o, e) =>
             {
                 splitContainerControl1.Collapsed = false;
                 await LoadCalendarAsync("Birthdays");
             };
+            gvEvent.DoubleClick += async (o, e) =>
+           {
+               await EditEvent();
+           };
 
         }
-        
+        private async Task LoadCalendarAsync(string calendarType)
+        {
+            if (schedulerDataStorage1 == null || schedulerDataStorage1.Appointments == null) return;
+
+            var now = DateTime.Now;
+
+            if (schedulerControl1 != null)
+            {
+                var firstDay = new DateTime(now.Year, now.Month, 1);
+                var lastDay = firstDay.AddMonths(1).AddDays(-1);
+
+                schedulerControl1.Start = firstDay;
+                schedulerControl1.LimitInterval.Start = firstDay;
+                schedulerControl1.LimitInterval.End = lastDay.AddDays(1);
+            }
+
+            switch (calendarType)
+            {
+                case "Birthdays":
+                    var service = new EmployeeService();
+                    var employeeList = await service.GetViewAsync();
+
+                    if (employeeList == null) return;
+                    var birthdayAppointments = employeeList
+                        .Where(emp => emp != null && emp.BirthDate.HasValue)
+                        .Select(emp => new
+                        {
+                            Subject = $"🎂 Happy Birthday {emp.FullName}!",
+                            StartDate = new DateTime(now.Year, emp.BirthDate.Value.Month, emp.BirthDate.Value.Day),
+                            EndDate = new DateTime(now.Year, emp.BirthDate.Value.Month, emp.BirthDate.Value.Day),
+                            AllDay = true,
+                            LabelId = 8
+                        })
+                        .ToList();
+
+                    schedulerDataStorage1.Appointments.DataSource = birthdayAppointments;
+                    break;
+
+
+                default:
+                    schedulerDataStorage1.Appointments.DataSource = null;
+                    break;
+
+                case "test":
+                    break;
+            }
+        }
         private async Task AddEvent()
         {
             var form = new EventEditForm(new Event());

@@ -117,4 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="xrLabel6.Text" xml:space="preserve">
+    <value>Demonstrating the highest frequency of unannounced or total absences within the organization for the current evaluation period. Your consistent pattern of away-from-office status has earned you formal recognition as the employee with the highest absence record, establishing a distinct benchmark in company attendance metrics.</value>
+  </data>
+  <data name="xrLabel15.Text" xml:space="preserve">
+    <value>In accordance with company policy and to ensure operational alignment and team coverage across all departments, management has approved a formal, temporary suspension. This period is designed to provide you with adequate time to review and resolve any personal or logistical matters impacting your regular attendance.</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>We value your ongoing contributions to the company and trust that this brief period will assist you in realigning with our core operational standards. We look forward to your prompt return and improved punctuality moving forward.</value>
+  </data>
 </root>

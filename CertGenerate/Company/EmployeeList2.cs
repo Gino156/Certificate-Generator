@@ -125,7 +125,7 @@ namespace CertGenerate.Company
                     break;
 
                 case "Absent Notice":
-                    //ReportLauncher.ShowReport(new AbsentNotice(employees));
+                    ReportLauncher.ShowReport(new AbsentNotice(employees));
                     break;
 
                 case "Complete Attendance":

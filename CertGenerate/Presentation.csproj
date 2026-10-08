@@ -109,6 +109,12 @@
     <Compile Include="Company\EventList.Designer.cs">
       <DependentUpon>EventList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Company\Reports\AbsentNotice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Company\Reports\AbsentNotice.Designer.cs">
+      <DependentUpon>AbsentNotice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Company\Reports\Certificate.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Company\EventList.resx">
       <DependentUpon>EventList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company\Reports\AbsentNotice.resx">
+      <DependentUpon>AbsentNotice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Company\Reports\Certificate.resx">
       <DependentUpon>Certificate.cs</DependentUpon>

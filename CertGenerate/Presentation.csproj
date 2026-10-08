@@ -127,6 +127,12 @@
     <Compile Include="Company\Reports\FiveYearsTenure.Designer.cs">
       <DependentUpon>FiveYearsTenure.cs</DependentUpon>
     </Compile>
+    <Compile Include="Company\Reports\LateNotice.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Company\Reports\LateNotice.Designer.cs">
+      <DependentUpon>LateNotice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Company\Reports\OJTCompletion.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Company\Reports\FiveYearsTenure.resx">
       <DependentUpon>FiveYearsTenure.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company\Reports\LateNotice.resx">
+      <DependentUpon>LateNotice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Company\Reports\OJTCompletion.resx">
       <DependentUpon>OJTCompletion.cs</DependentUpon>

@@ -120,17 +120,16 @@ namespace CertGenerate.Company
                     }
                     break;
 
-                case "Birthday":
-                    var bdayNow = employees
-                        .Where(emp => emp.BirthDate.HasValue &&
-                                      emp.BirthDate.Value.Month == DateTime.Today.Month &&
-                                      emp.BirthDate.Value.Day == DateTime.Today.Day)
-                        .ToList();
+                case "Late Notice":
+                    ReportLauncher.ShowReport(new LateNotice(employees));
+                    break;
 
-                    if (bdayNow.Count > 0)
-                    {
-                        //ReportLauncher.ShowReport(new BirthdayCertificate(bdayNow));
-                    }
+                case "Absent Notice":
+                    //ReportLauncher.ShowReport(new AbsentNotice(employees));
+                    break;
+
+                case "Complete Attendance":
+                    //ReportLauncher.ShowReport(new CompleteAttendance(employees));
                     break;
 
 

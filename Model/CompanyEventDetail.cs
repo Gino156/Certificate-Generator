@@ -12,10 +12,11 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class vw_Event
+    public partial class CompanyEventDetail
     {
-        public int EventId { get; set; }
-        public string EventName { get; set; }
-        public string Description { get; set; }
+        public int CompanyEventDetailsId { get; set; }
+        public Nullable<int> EventsId { get; set; }
+    
+        public virtual Event Event { get; set; }
     }
 }

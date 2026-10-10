@@ -11,13 +11,27 @@ namespace Service.Employee
 {
     public class EventService : GenericService<Event>
     {
-        public async Task<List<vw_Event>> GetViewAsync()
+        public async Task<List<vw_Events>> GetViewAsync()
         {
             try
             {
-                return await _context.vw_Event
+                return await _context.vw_Events
                                      .AsNoTracking()
                                      .ToListAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<vw_Events> GetViewAsyncById(int id)
+        {
+            try
+            {
+                return await _context.vw_Events
+                                     .AsNoTracking()
+                                     .SingleOrDefaultAsync(x => x.EventsId == id);
             }
             catch (Exception)
             {

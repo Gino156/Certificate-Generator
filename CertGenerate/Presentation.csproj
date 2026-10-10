@@ -97,11 +97,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Company\EventEditForm.cs">
+    <Compile Include="Company\EventsEditForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Company\EventEditForm.Designer.cs">
-      <DependentUpon>EventEditForm.cs</DependentUpon>
+    <Compile Include="Company\EventsEditForm.Designer.cs">
+      <DependentUpon>EventsEditForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Company\EventTypeEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Company\EventTypeEditForm.Designer.cs">
+      <DependentUpon>EventTypeEditForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Company\EventList.cs">
       <SubType>UserControl</SubType>
@@ -148,6 +154,7 @@
     <Compile Include="Extensions\ControlExtension.cs" />
     <Compile Include="Extensions\ReportLauncher.cs" />
     <Compile Include="Extensions\GridExtension.cs" />
+    <Compile Include="Helper\SearchLookupHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,8 +163,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Company\EventEditForm.resx">
-      <DependentUpon>EventEditForm.cs</DependentUpon>
+    <EmbeddedResource Include="Company\EventsEditForm.resx">
+      <DependentUpon>EventsEditForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company\EventTypeEditForm.resx">
+      <DependentUpon>EventTypeEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Company\EventList.resx">
       <DependentUpon>EventList.cs</DependentUpon>
@@ -197,6 +207,8 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Model.Employee.datasource" />
     <None Include="Properties\DataSources\Model.vw_Event.datasource" />
+    <None Include="Properties\DataSources\Model.vw_Events.datasource" />
+    <None Include="Properties\DataSources\Model.vw_EventType.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

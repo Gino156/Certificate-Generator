@@ -40,20 +40,39 @@
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.gcEvent = new DevExpress.XtraGrid.GridControl();
-            this.vwEventBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.gvEvent = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colEventId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colEventName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDescription = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gcEventType = new DevExpress.XtraGrid.GridControl();
+            this.vwEventTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gvEventType = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colEventTypeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEventTypeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.gcEvents = new DevExpress.XtraGrid.GridControl();
+            this.vwEventsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gvEvents = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colEventsId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTitle = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colstart_date = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colend_date = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colEventTypeId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
             this.schedulerDataStorage1 = new DevExpress.XtraScheduler.SchedulerDataStorage(this.components);
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bbiNewEvent = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiEditEvent = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiDeleteEvent = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gcEvent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vwEventBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvEvent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcEventType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vwEventTypeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEventType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gcEvents)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vwEventsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEvents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerDataStorage1)).BeginInit();
             this.SuspendLayout();
@@ -66,9 +85,12 @@
             this.ribbonControl1.SearchEditItem,
             this.bbiNew,
             this.bbiEdit,
-            this.bbiDelete});
+            this.bbiDelete,
+            this.bbiNewEvent,
+            this.bbiEditEvent,
+            this.bbiDeleteEvent});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 19;
+            this.ribbonControl1.MaxItemId = 22;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -98,7 +120,8 @@
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup1});
+            this.ribbonPageGroup1,
+            this.ribbonPageGroup2});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Events";
             // 
@@ -108,7 +131,7 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiEdit);
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiDelete);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
-            this.ribbonPageGroup1.Text = "Actions";
+            this.ribbonPageGroup1.Text = "Event Type Actions";
             // 
             // splitContainerControl1
             // 
@@ -118,55 +141,131 @@
             this.splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.None;
             this.splitContainerControl1.Location = new System.Drawing.Point(0, 150);
             this.splitContainerControl1.Name = "splitContainerControl1";
-            this.splitContainerControl1.Panel1.Controls.Add(this.gcEvent);
+            this.splitContainerControl1.Panel1.Controls.Add(this.gcEventType);
             this.splitContainerControl1.Panel1.Text = "Panel1";
-            this.splitContainerControl1.Panel2.Controls.Add(this.schedulerControl1);
+            this.splitContainerControl1.Panel2.Controls.Add(this.splitContainer1);
             this.splitContainerControl1.Panel2.Text = "Panel2";
             this.splitContainerControl1.Size = new System.Drawing.Size(967, 458);
             this.splitContainerControl1.TabIndex = 1;
             // 
-            // gcEvent
+            // gcEventType
             // 
-            this.gcEvent.DataSource = this.vwEventBindingSource;
-            this.gcEvent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcEvent.Location = new System.Drawing.Point(0, 0);
-            this.gcEvent.MainView = this.gvEvent;
-            this.gcEvent.MenuManager = this.ribbonControl1;
-            this.gcEvent.Name = "gcEvent";
-            this.gcEvent.Size = new System.Drawing.Size(0, 0);
-            this.gcEvent.TabIndex = 0;
-            this.gcEvent.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gvEvent});
+            this.gcEventType.DataSource = this.vwEventTypeBindingSource;
+            this.gcEventType.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcEventType.Location = new System.Drawing.Point(0, 0);
+            this.gcEventType.MainView = this.gvEventType;
+            this.gcEventType.MenuManager = this.ribbonControl1;
+            this.gcEventType.Name = "gcEventType";
+            this.gcEventType.Size = new System.Drawing.Size(0, 0);
+            this.gcEventType.TabIndex = 0;
+            this.gcEventType.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvEventType});
             // 
-            // vwEventBindingSource
+            // vwEventTypeBindingSource
             // 
-            this.vwEventBindingSource.DataSource = typeof(Model.vw_Event);
+            this.vwEventTypeBindingSource.DataSource = typeof(Model.vw_EventType);
             // 
-            // gvEvent
+            // gvEventType
             // 
-            this.gvEvent.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colEventId,
-            this.colEventName,
-            this.colDescription});
-            this.gvEvent.GridControl = this.gcEvent;
-            this.gvEvent.Name = "gvEvent";
+            this.gvEventType.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colEventTypeId,
+            this.colEventTypeName});
+            this.gvEventType.GridControl = this.gcEventType;
+            this.gvEventType.Name = "gvEventType";
             // 
-            // colEventId
+            // colEventTypeId
             // 
-            this.colEventId.FieldName = "EventId";
-            this.colEventId.Name = "colEventId";
+            this.colEventTypeId.FieldName = "EventTypeId";
+            this.colEventTypeId.Name = "colEventTypeId";
+            this.colEventTypeId.Visible = true;
+            this.colEventTypeId.VisibleIndex = 0;
             // 
-            // colEventName
+            // colEventTypeName
             // 
-            this.colEventName.FieldName = "EventName";
-            this.colEventName.Name = "colEventName";
-            this.colEventName.Visible = true;
-            this.colEventName.VisibleIndex = 0;
+            this.colEventTypeName.FieldName = "EventTypeName";
+            this.colEventTypeName.Name = "colEventTypeName";
+            this.colEventTypeName.Visible = true;
+            this.colEventTypeName.VisibleIndex = 1;
             // 
-            // colDescription
+            // splitContainer1
             // 
-            this.colDescription.FieldName = "Description";
-            this.colDescription.Name = "colDescription";
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.gcEvents);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.schedulerControl1);
+            this.splitContainer1.Size = new System.Drawing.Size(957, 458);
+            this.splitContainer1.SplitterDistance = 443;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // gcEvents
+            // 
+            this.gcEvents.DataSource = this.vwEventsBindingSource;
+            this.gcEvents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcEvents.Location = new System.Drawing.Point(0, 0);
+            this.gcEvents.MainView = this.gvEvents;
+            this.gcEvents.MenuManager = this.ribbonControl1;
+            this.gcEvents.Name = "gcEvents";
+            this.gcEvents.Size = new System.Drawing.Size(443, 458);
+            this.gcEvents.TabIndex = 1;
+            this.gcEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gvEvents});
+            // 
+            // vwEventsBindingSource
+            // 
+            this.vwEventsBindingSource.DataSource = typeof(Model.vw_Events);
+            // 
+            // gvEvents
+            // 
+            this.gvEvents.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colEventsId,
+            this.colTitle,
+            this.colstart_date,
+            this.colend_date,
+            this.colEventTypeId1});
+            this.gvEvents.GridControl = this.gcEvents;
+            this.gvEvents.Name = "gvEvents";
+            // 
+            // colEventsId
+            // 
+            this.colEventsId.FieldName = "EventsId";
+            this.colEventsId.Name = "colEventsId";
+            this.colEventsId.Visible = true;
+            this.colEventsId.VisibleIndex = 0;
+            // 
+            // colTitle
+            // 
+            this.colTitle.FieldName = "Title";
+            this.colTitle.Name = "colTitle";
+            this.colTitle.Visible = true;
+            this.colTitle.VisibleIndex = 1;
+            // 
+            // colstart_date
+            // 
+            this.colstart_date.FieldName = "start_date";
+            this.colstart_date.Name = "colstart_date";
+            this.colstart_date.Visible = true;
+            this.colstart_date.VisibleIndex = 2;
+            // 
+            // colend_date
+            // 
+            this.colend_date.FieldName = "end_date";
+            this.colend_date.Name = "colend_date";
+            this.colend_date.Visible = true;
+            this.colend_date.VisibleIndex = 3;
+            // 
+            // colEventTypeId1
+            // 
+            this.colEventTypeId1.FieldName = "EventTypeId";
+            this.colEventTypeId1.Name = "colEventTypeId1";
+            this.colEventTypeId1.Visible = true;
+            this.colEventTypeId1.VisibleIndex = 4;
             // 
             // schedulerControl1
             // 
@@ -182,7 +281,7 @@
             this.schedulerControl1.OptionsCustomization.AllowAppointmentDrag = DevExpress.XtraScheduler.UsedAppointmentType.None;
             this.schedulerControl1.OptionsCustomization.AllowAppointmentDragBetweenResources = DevExpress.XtraScheduler.UsedAppointmentType.None;
             this.schedulerControl1.OptionsCustomization.AllowAppointmentEdit = DevExpress.XtraScheduler.UsedAppointmentType.None;
-            this.schedulerControl1.Size = new System.Drawing.Size(957, 458);
+            this.schedulerControl1.Size = new System.Drawing.Size(510, 458);
             this.schedulerControl1.Start = new System.DateTime(2026, 10, 4, 0, 0, 0, 0);
             this.schedulerControl1.TabIndex = 0;
             this.schedulerControl1.Text = "schedulerControl1";
@@ -209,6 +308,35 @@
             this.schedulerDataStorage1.Appointments.Mappings.Start = "StartDate";
             this.schedulerDataStorage1.Appointments.Mappings.Subject = "Subject";
             // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiNewEvent);
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiEditEvent);
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiDeleteEvent);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Events Actions";
+            // 
+            // bbiNewEvent
+            // 
+            this.bbiNewEvent.Caption = "New Event";
+            this.bbiNewEvent.Id = 19;
+            this.bbiNewEvent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiNewEvent.ImageOptions.SvgImage")));
+            this.bbiNewEvent.Name = "bbiNewEvent";
+            // 
+            // bbiEditEvent
+            // 
+            this.bbiEditEvent.Caption = "Edit Event";
+            this.bbiEditEvent.Id = 20;
+            this.bbiEditEvent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiEditEvent.ImageOptions.SvgImage")));
+            this.bbiEditEvent.Name = "bbiEditEvent";
+            // 
+            // bbiDeleteEvent
+            // 
+            this.bbiDeleteEvent.Caption = "Delete Event";
+            this.bbiDeleteEvent.Id = 21;
+            this.bbiDeleteEvent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiDeleteEvent.ImageOptions.SvgImage")));
+            this.bbiDeleteEvent.Name = "bbiDeleteEvent";
+            // 
             // EventList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -220,9 +348,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).EndInit();
             this.splitContainerControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gcEvent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.vwEventBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gvEvent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcEventType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vwEventTypeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEventType)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gcEvents)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.vwEventsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEvents)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerDataStorage1)).EndInit();
             this.ResumeLayout(false);
@@ -236,16 +371,28 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
-        private DevExpress.XtraGrid.GridControl gcEvent;
-        private DevExpress.XtraGrid.Views.Grid.GridView gvEvent;
-        private System.Windows.Forms.BindingSource vwEventBindingSource;
-        private DevExpress.XtraGrid.Columns.GridColumn colEventId;
-        private DevExpress.XtraGrid.Columns.GridColumn colEventName;
-        private DevExpress.XtraGrid.Columns.GridColumn colDescription;
         private DevExpress.XtraBars.BarButtonItem bbiNew;
         private DevExpress.XtraBars.BarButtonItem bbiEdit;
         private DevExpress.XtraBars.BarButtonItem bbiDelete;
         private DevExpress.XtraScheduler.SchedulerControl schedulerControl1;
         private DevExpress.XtraScheduler.SchedulerDataStorage schedulerDataStorage1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private DevExpress.XtraGrid.GridControl gcEvents;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvEvents;
+        private DevExpress.XtraGrid.GridControl gcEventType;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvEventType;
+        private DevExpress.XtraGrid.Columns.GridColumn colEventTypeId;
+        private DevExpress.XtraGrid.Columns.GridColumn colEventTypeName;
+        private System.Windows.Forms.BindingSource vwEventsBindingSource;
+        private DevExpress.XtraGrid.Columns.GridColumn colEventsId;
+        private DevExpress.XtraGrid.Columns.GridColumn colTitle;
+        private DevExpress.XtraGrid.Columns.GridColumn colstart_date;
+        private DevExpress.XtraGrid.Columns.GridColumn colend_date;
+        private DevExpress.XtraGrid.Columns.GridColumn colEventTypeId1;
+        private System.Windows.Forms.BindingSource vwEventTypeBindingSource;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.BarButtonItem bbiNewEvent;
+        private DevExpress.XtraBars.BarButtonItem bbiEditEvent;
+        private DevExpress.XtraBars.BarButtonItem bbiDeleteEvent;
     }
 }

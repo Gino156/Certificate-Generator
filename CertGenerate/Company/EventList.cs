@@ -20,44 +20,69 @@ namespace CertGenerate.Company
         {
             InitializeComponent();
             ribbonControl1.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
-            gvEvent.InitDefaultGridState();
+            gvEventType.InitDefaultGridState();
             Load += async (o, e) =>
             {
                 InitButtonActions();
                 await LoadDataSource();
+                await LoadEventTypeDataSource();
             };
         }
-        private async Task LoadDataSource()
+        private async Task LoadDataSource() //Event
         {
-            var service = new EventService();
-            var datasource = await service.GetViewAsync();
-            gcEvent.DataSource = datasource;
+            var eve = new EventService();
+            var datasource = await eve.GetViewAsync();
+            gcEvents.DataSource = datasource;
+        }
+        private async Task LoadEventTypeDataSource() //Event Type
+        {
+            var eventType = new EventTypeService();
+            var datasource = await eventType.GetViewAsync();
+            gcEventType.DataSource = datasource;
         }
 
         private void InitButtonActions()
         {
-            bbiNew.ItemClick += async (o, e) => //New Event
+            bbiNew.ItemClick += async (o, e) => //New Event Type
+            {
+                await AddEventType();
+            };
+            bbiDelete.ItemClick += async (o, e) => //Delete Event Type
+            {
+                await DeleteEventType();
+            };
+            bbiEdit.ItemClick += async (o, e) => //Edit Event Type
+            {
+                await EditEventType();
+            };
+
+            bbiNewEvent.ItemClick += async (o, e) => //New Event
             {
                 await AddEvent();
             };
-            bbiDelete.ItemClick += async (o, e) => //Delete Event
+            bbiDeleteEvent.ItemClick += async (o, e) => //Delete Event
             {
-                await Delete();
+                await DeleteEvent();
             };
-            bbiEdit.ItemClick += async (o, e) => //Edit Event
+            bbiEditEvent.ItemClick += async (o, e) => //Edit Event
             {
                 await EditEvent();
             };
 
-            gvEvent.FocusedRowChanged += async (o, e) =>
+
+            gvEventType.FocusedRowChanged += async (o, e) =>
             {
                 splitContainerControl1.Collapsed = false;
                 await LoadCalendarAsync("Birthdays");
             };
-            gvEvent.DoubleClick += async (o, e) =>
-           {
-               await EditEvent();
-           };
+            gvEventType.DoubleClick += async (o, e) =>
+            {
+                await EditEventType();
+            };
+            gvEvents.DoubleClick += async (o, e) =>
+            {
+                await EditEvent();
+            };
 
         }
         private async Task LoadCalendarAsync(string calendarType)
@@ -87,7 +112,7 @@ namespace CertGenerate.Company
                         .Where(emp => emp != null && emp.BirthDate.HasValue)
                         .Select(emp => new
                         {
-                            Subject = $"🎂 Happy Birthday {emp.FullName}!",
+                            Subject = $"{emp.FullName}🎂",
                             StartDate = new DateTime(now.Year, emp.BirthDate.Value.Month, emp.BirthDate.Value.Day),
                             EndDate = new DateTime(now.Year, emp.BirthDate.Value.Month, emp.BirthDate.Value.Day),
                             AllDay = true,
@@ -107,31 +132,78 @@ namespace CertGenerate.Company
                     break;
             }
         }
-        private async Task AddEvent()
+        private async Task AddEventType() //Event Type
         {
-            var form = new EventEditForm(new Event());
+            var form = new EventTypeEditForm(new EventType());
+            form.ShowDialog();
+            await LoadEventTypeDataSource();
+        }
+        private async Task AddEvent() //Event
+        {
+            var form = new EventsEditForm(new Event());
             form.ShowDialog();
             await LoadDataSource();
         }
 
-        private async Task EditEvent()
+        private async Task EditEventType() //Event Type
         {
-            var id = gvEvent.GetRecordId(nameof(Event.EventId));
-            var brand = await new EventService().GetByIdAsync(id);
-            var form = new EventEditForm(brand);
+            var id = gvEventType.GetRecordId(nameof(EventType.EventTypeId));
+            var type = await new EventTypeService().GetByIdAsync(id);
+            var form = new EventTypeEditForm(type);
+            form.ShowDialog();
+            await LoadEventTypeDataSource();
+        }
+        private async Task EditEvent() //Event
+        {
+            var id = gvEvents.GetRecordId(nameof(Event.EventsId));
+            var ev = await new EventService().GetByIdAsync(id);
+            var form = new EventsEditForm(ev);
             form.ShowDialog();
             await LoadDataSource();
         }
-        private async Task Delete()
+        private async Task DeleteEventType() //Event Type
         {
-            var id = gvEvent.GetRecordId(nameof(Event.EventId));
+            var id = gvEventType.GetRecordId(nameof(EventType.EventTypeId));
+            if (id <= 0)
+            {
+                XtraMessageBox.Show("Please select an event type to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var confirm = XtraMessageBox.Show("Are you sure you want to delete this event type?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                try
+                {
+                    var service = new EventTypeService();
+                    bool success = await service.DeleteAsync(id);
+                    if (success)
+                    {
+                        XtraMessageBox.Show("Event Type successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadEventTypeDataSource();
+                        splitContainerControl1.Collapsed = true;
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show("Failed to delete the event type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show($"An error occurred while deleting: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private async Task DeleteEvent() //Event
+        {
+            var id = gvEvents.GetRecordId(nameof(Event.EventsId));
             if (id <= 0)
             {
                 XtraMessageBox.Show("Please select an event to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            var confirm = XtraMessageBox.Show("Are you sure you want to delete this event?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirm = XtraMessageBox.Show("Are you sure you want to delete this event type?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
                 try
@@ -140,13 +212,13 @@ namespace CertGenerate.Company
                     bool success = await service.DeleteAsync(id);
                     if (success)
                     {
-                        XtraMessageBox.Show("Event successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("Event Type successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await LoadDataSource();
                         splitContainerControl1.Collapsed = true;
                     }
                     else
                     {
-                        XtraMessageBox.Show("Failed to delete the event.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show("Failed to delete the event type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)

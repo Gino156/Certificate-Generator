@@ -14,8 +14,26 @@ namespace Model
     
     public partial class Event
     {
-        public int EventId { get; set; }
-        public string EventName { get; set; }
-        public string Description { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Event()
+        {
+            this.BirthdayDetails = new HashSet<BirthdayDetail>();
+            this.CompanyEventDetails = new HashSet<CompanyEventDetail>();
+            this.HolidayDetails = new HashSet<HolidayDetail>();
+        }
+    
+        public int EventsId { get; set; }
+        public string Title { get; set; }
+        public Nullable<System.DateTime> start_date { get; set; }
+        public Nullable<System.DateTime> end_date { get; set; }
+        public Nullable<int> EventTypeId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BirthdayDetail> BirthdayDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CompanyEventDetail> CompanyEventDetails { get; set; }
+        public virtual EventType EventType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HolidayDetail> HolidayDetails { get; set; }
     }
 }

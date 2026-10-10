@@ -13,13 +13,13 @@ using Service.Employee;
 
 namespace CertGenerate.Company
 {
-    public partial class EventEditForm : DevExpress.XtraEditors.XtraForm
+    public partial class EventTypeEditForm : DevExpress.XtraEditors.XtraForm
     {
-        Event _event;
-        public EventEditForm(Event Event)
+        EventType _eventType;
+        public EventTypeEditForm(EventType EventType)
         {
             InitializeComponent();
-            _event = Event;
+            _eventType = EventType;
             BindControls();
             btnSave.Click += async (o, e) =>
             {
@@ -30,22 +30,21 @@ namespace CertGenerate.Company
         public void BindControls()
         {
             var mode = DataSourceUpdateMode.OnPropertyChanged;
-            txtEventName.DataBindings.Add("EditValue", _event, nameof(_event.EventName), true, mode);
-            mmDesc.DataBindings.Add("EditValue", _event, nameof(_event.Description), true, mode);
+            txtEventName.DataBindings.Add("EditValue", _eventType, nameof(_eventType.EventTypeName), true, mode);
         }
 
         public async Task Save()
         {
-            var service = new EventService();
+            var service = new EventTypeService();
             bool success = false;
 
-            if (_event.EventId == 0)
+            if (_eventType.EventTypeId == 0)
             {
-                success = await service.InsertAsync(_event);
+                success = await service.InsertAsync(_eventType);
             }
             else
             {
-                success = await service.UpdateAsync(_event);
+                success = await service.UpdateAsync(_eventType);
             }
 
             if (success)

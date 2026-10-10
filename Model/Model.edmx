@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="CertProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BirthdayDetails">
+          <Key>
+            <PropertyRef Name="BirthdayDetailsId" />
+          </Key>
+          <Property Name="BirthdayDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventsId" Type="int" />
+          <Property Name="EmployeeID" Type="int" />
+        </EntityType>
+        <EntityType Name="CompanyEventDetails">
+          <Key>
+            <PropertyRef Name="CompanyEventDetailsId" />
+          </Key>
+          <Property Name="CompanyEventDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventsId" Type="int" />
+        </EntityType>
         <EntityType Name="Employees">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -18,13 +33,29 @@
           <Property Name="IsOJT" Type="bit" />
           <Property Name="BirthDate" Type="date" />
         </EntityType>
-        <EntityType Name="Event">
+        <EntityType Name="Events">
           <Key>
-            <PropertyRef Name="EventId" />
+            <PropertyRef Name="EventsId" />
           </Key>
-          <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EventName" Type="varchar" MaxLength="50" />
-          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="EventsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="255" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="end_date" Type="datetime" />
+          <Property Name="EventTypeId" Type="int" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeId" />
+          </Key>
+          <Property Name="EventTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventTypeName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="HolidayDetails">
+          <Key>
+            <PropertyRef Name="HolidayDetailsId" />
+          </Key>
+          <Property Name="HolidayDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventsId" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -45,18 +76,93 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a pri
           <Property Name="BirthDate" Type="date" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'CertProjectDB.dbo.vw_Event' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="vw_Event">
+warning 6002: The table/view 'CertProjectDB.dbo.vw_Events' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Events">
           <Key>
-            <PropertyRef Name="EventId" />
+            <PropertyRef Name="EventsId" />
           </Key>
-          <Property Name="EventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EventName" Type="varchar" MaxLength="50" />
-          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="EventsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="varchar" MaxLength="255" />
+          <Property Name="start_date" Type="datetime" />
+          <Property Name="end_date" Type="datetime" />
+          <Property Name="EventTypeId" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_EventType">
+          <Key>
+            <PropertyRef Name="EventTypeId" />
+          </Key>
+          <Property Name="EventTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventTypeName" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_BirthDayDetails_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="BirthdayDetails" Type="Self.BirthdayDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="BirthdayDetails">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BirthdayDetails_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="BirthdayDetails" Type="Self.BirthdayDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventsId" />
+            </Principal>
+            <Dependent Role="BirthdayDetails">
+              <PropertyRef Name="EventsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyEventDetails_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="CompanyEventDetails" Type="Self.CompanyEventDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventsId" />
+            </Principal>
+            <Dependent Role="CompanyEventDetails">
+              <PropertyRef Name="EventsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_EventType">
+          <End Role="EventType" Type="Self.EventType" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeId" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="EventTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HolidayDetails_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+          <End Role="HolidayDetails" Type="Self.HolidayDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="EventsId" />
+            </Principal>
+            <Dependent Role="HolidayDetails">
+              <PropertyRef Name="EventsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CertProjectDBModelStoreContainer">
+          <EntitySet Name="BirthdayDetails" EntityType="Self.BirthdayDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompanyEventDetails" EntityType="Self.CompanyEventDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventType" EntityType="Self.EventType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HolidayDetails" EntityType="Self.HolidayDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="vw_Employee" EntityType="Self.vw_Employee" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [vw_Employee].[EmployeeID] AS [EmployeeID], 
@@ -69,13 +175,41 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Event' does not have a primar
     [vw_Employee].[BirthDate] AS [BirthDate]
     FROM [dbo].[vw_Employee] AS [vw_Employee]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_Event" EntityType="Self.vw_Event" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="vw_Events" EntityType="Self.vw_Events" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [vw_Event].[EventId] AS [EventId], 
-    [vw_Event].[EventName] AS [EventName], 
-    [vw_Event].[Description] AS [Description]
-    FROM [dbo].[vw_Event] AS [vw_Event]</DefiningQuery>
+    [vw_Events].[EventsId] AS [EventsId], 
+    [vw_Events].[Title] AS [Title], 
+    [vw_Events].[start_date] AS [start_date], 
+    [vw_Events].[end_date] AS [end_date], 
+    [vw_Events].[EventTypeId] AS [EventTypeId]
+    FROM [dbo].[vw_Events] AS [vw_Events]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="vw_EventType" EntityType="Self.vw_EventType" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vw_EventType].[EventTypeId] AS [EventTypeId], 
+    [vw_EventType].[EventTypeName] AS [EventTypeName]
+    FROM [dbo].[vw_EventType] AS [vw_EventType]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_BirthDayDetails_Employees" Association="Self.FK_BirthDayDetails_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="BirthdayDetails" EntitySet="BirthdayDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BirthdayDetails_Events" Association="Self.FK_BirthdayDetails_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="BirthdayDetails" EntitySet="BirthdayDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyEventDetails_Events" Association="Self.FK_CompanyEventDetails_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="CompanyEventDetails" EntitySet="CompanyEventDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_EventType" Association="Self.FK_Events_EventType">
+            <End Role="EventType" EntitySet="EventType" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HolidayDetails_Events" Association="Self.FK_HolidayDetails_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="HolidayDetails" EntitySet="HolidayDetails" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -84,9 +218,34 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Event' does not have a primar
         <EntityContainer Name="CertProjectDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Employees" EntityType="CertProjectDBModel.Employee" />
           <EntitySet Name="vw_Employee" EntityType="CertProjectDBModel.vw_Employee" />
+          <EntitySet Name="BirthdayDetails" EntityType="CertProjectDBModel.BirthdayDetail" />
+          <EntitySet Name="CompanyEventDetails" EntityType="CertProjectDBModel.CompanyEventDetail" />
+          <EntitySet Name="EventTypes" EntityType="CertProjectDBModel.EventType" />
+          <EntitySet Name="HolidayDetails" EntityType="CertProjectDBModel.HolidayDetail" />
+          <EntitySet Name="vw_EventType" EntityType="CertProjectDBModel.vw_EventType" />
+          <AssociationSet Name="FK_BirthDayDetails_Employees" Association="CertProjectDBModel.FK_BirthDayDetails_Employees">
+            <End Role="Employee" EntitySet="Employees" />
+            <End Role="BirthdayDetail" EntitySet="BirthdayDetails" />
+          </AssociationSet>
           <EntitySet Name="Events" EntityType="CertProjectDBModel.Event" />
-          <EntitySet Name="vw_Event" EntityType="CertProjectDBModel.vw_Event" />
-        </EntityContainer>
+          <AssociationSet Name="FK_BirthdayDetails_Events" Association="CertProjectDBModel.FK_BirthdayDetails_Events">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="BirthdayDetail" EntitySet="BirthdayDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompanyEventDetails_Events" Association="CertProjectDBModel.FK_CompanyEventDetails_Events">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="CompanyEventDetail" EntitySet="CompanyEventDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_EventType" Association="CertProjectDBModel.FK_Events_EventType">
+            <End Role="EventType" EntitySet="EventTypes" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HolidayDetails_Events" Association="CertProjectDBModel.FK_HolidayDetails_Events">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="HolidayDetail" EntitySet="HolidayDetails" />
+          </AssociationSet>
+          <EntitySet Name="vw_Events" EntityType="CertProjectDBModel.vw_Events" />
+          </EntityContainer>
         <EntityType Name="Employee">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -99,6 +258,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Event' does not have a primar
           <Property Name="HireDate" Type="DateTime" Precision="0" />
           <Property Name="IsOJT" Type="Boolean" />
           <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="BirthdayDetails" Relationship="CertProjectDBModel.FK_BirthDayDetails_Employees" FromRole="Employee" ToRole="BirthdayDetail" />
         </EntityType>
         <EntityType Name="vw_Employee">
           <Key>
@@ -116,23 +276,132 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Event' does not have a primar
           <Property Name="IsOJT" Type="Boolean" />
           <Property Name="BirthDate" Type="DateTime" Precision="0" />
         </EntityType>
+        <EntityType Name="BirthdayDetail">
+          <Key>
+            <PropertyRef Name="BirthdayDetailsId" />
+          </Key>
+          <Property Name="BirthdayDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventsId" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="CertProjectDBModel.FK_BirthDayDetails_Employees" FromRole="BirthdayDetail" ToRole="Employee" />
+          <NavigationProperty Name="Event" Relationship="CertProjectDBModel.FK_BirthdayDetails_Events" FromRole="BirthdayDetail" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="CompanyEventDetail">
+          <Key>
+            <PropertyRef Name="CompanyEventDetailsId" />
+          </Key>
+          <Property Name="CompanyEventDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventsId" Type="Int32" />
+          <NavigationProperty Name="Event" Relationship="CertProjectDBModel.FK_CompanyEventDetails_Events" FromRole="CompanyEventDetail" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeId" />
+          </Key>
+          <Property Name="EventTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Events" Relationship="CertProjectDBModel.FK_Events_EventType" FromRole="EventType" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="HolidayDetail">
+          <Key>
+            <PropertyRef Name="HolidayDetailsId" />
+          </Key>
+          <Property Name="HolidayDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventsId" Type="Int32" />
+          <NavigationProperty Name="Event" Relationship="CertProjectDBModel.FK_HolidayDetails_Events" FromRole="HolidayDetail" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="vw_EventType">
+          <Key>
+            <PropertyRef Name="EventTypeId" />
+          </Key>
+          <Property Name="EventTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EventTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_BirthDayDetails_Employees">
+          <End Type="CertProjectDBModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="CertProjectDBModel.BirthdayDetail" Role="BirthdayDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="EmployeeID" />
+            </Principal>
+            <Dependent Role="BirthdayDetail">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Event">
           <Key>
-            <PropertyRef Name="EventId" />
+            <PropertyRef Name="EventsId" />
           </Key>
-          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EventsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="start_date" Type="DateTime" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Precision="3" />
+          <Property Name="EventTypeId" Type="Int32" />
+          <NavigationProperty Name="BirthdayDetails" Relationship="CertProjectDBModel.FK_BirthdayDetails_Events" FromRole="Event" ToRole="BirthdayDetail" />
+          <NavigationProperty Name="CompanyEventDetails" Relationship="CertProjectDBModel.FK_CompanyEventDetails_Events" FromRole="Event" ToRole="CompanyEventDetail" />
+          <NavigationProperty Name="EventType" Relationship="CertProjectDBModel.FK_Events_EventType" FromRole="Event" ToRole="EventType" />
+          <NavigationProperty Name="HolidayDetails" Relationship="CertProjectDBModel.FK_HolidayDetails_Events" FromRole="Event" ToRole="HolidayDetail" />
         </EntityType>
-        <EntityType Name="vw_Event">
+        <Association Name="FK_BirthdayDetails_Events">
+          <End Type="CertProjectDBModel.Event" Role="Event" Multiplicity="0..1" />
+          <End Type="CertProjectDBModel.BirthdayDetail" Role="BirthdayDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventsId" />
+            </Principal>
+            <Dependent Role="BirthdayDetail">
+              <PropertyRef Name="EventsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompanyEventDetails_Events">
+          <End Type="CertProjectDBModel.Event" Role="Event" Multiplicity="0..1" />
+          <End Type="CertProjectDBModel.CompanyEventDetail" Role="CompanyEventDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventsId" />
+            </Principal>
+            <Dependent Role="CompanyEventDetail">
+              <PropertyRef Name="EventsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_EventType">
+          <End Type="CertProjectDBModel.EventType" Role="EventType" Multiplicity="0..1" />
+          <End Type="CertProjectDBModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="EventTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HolidayDetails_Events">
+          <End Type="CertProjectDBModel.Event" Role="Event" Multiplicity="0..1" />
+          <End Type="CertProjectDBModel.HolidayDetail" Role="HolidayDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventsId" />
+            </Principal>
+            <Dependent Role="HolidayDetail">
+              <PropertyRef Name="EventsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_Events">
           <Key>
-            <PropertyRef Name="EventId" />
+            <PropertyRef Name="EventsId" />
           </Key>
-          <Property Name="EventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EventName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EventsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="start_date" Type="DateTime" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Precision="3" />
+          <Property Name="EventTypeId" Type="Int32" />
         </EntityType>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -166,25 +435,70 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Event' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BirthdayDetails">
+            <EntityTypeMapping TypeName="CertProjectDBModel.BirthdayDetail">
+              <MappingFragment StoreEntitySet="BirthdayDetails">
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="EventsId" ColumnName="EventsId" />
+                <ScalarProperty Name="BirthdayDetailsId" ColumnName="BirthdayDetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompanyEventDetails">
+            <EntityTypeMapping TypeName="CertProjectDBModel.CompanyEventDetail">
+              <MappingFragment StoreEntitySet="CompanyEventDetails">
+                <ScalarProperty Name="EventsId" ColumnName="EventsId" />
+                <ScalarProperty Name="CompanyEventDetailsId" ColumnName="CompanyEventDetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTypes">
+            <EntityTypeMapping TypeName="CertProjectDBModel.EventType">
+              <MappingFragment StoreEntitySet="EventType">
+                <ScalarProperty Name="EventTypeName" ColumnName="EventTypeName" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HolidayDetails">
+            <EntityTypeMapping TypeName="CertProjectDBModel.HolidayDetail">
+              <MappingFragment StoreEntitySet="HolidayDetails">
+                <ScalarProperty Name="EventsId" ColumnName="EventsId" />
+                <ScalarProperty Name="HolidayDetailsId" ColumnName="HolidayDetailsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_EventType">
+            <EntityTypeMapping TypeName="CertProjectDBModel.vw_EventType">
+              <MappingFragment StoreEntitySet="vw_EventType">
+                <ScalarProperty Name="EventTypeName" ColumnName="EventTypeName" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="CertProjectDBModel.Event">
-              <MappingFragment StoreEntitySet="Event">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="EventName" ColumnName="EventName" />
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EventsId" ColumnName="EventsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_Event">
-            <EntityTypeMapping TypeName="CertProjectDBModel.vw_Event">
-              <MappingFragment StoreEntitySet="vw_Event">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="EventName" ColumnName="EventName" />
-                <ScalarProperty Name="EventId" ColumnName="EventId" />
+          <EntitySetMapping Name="vw_Events">
+            <EntityTypeMapping TypeName="CertProjectDBModel.vw_Events">
+              <MappingFragment StoreEntitySet="vw_Events">
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="EventsId" ColumnName="EventsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

@@ -62,12 +62,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\BirthdayDetailService.cs" />
+    <Compile Include="Services\CompanyEventDetailService.cs" />
     <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\EventTypeService.cs" />
     <Compile Include="Extensions\ServiceExtension.cs" />
     <Compile Include="GenericServices.cs" />
     <Compile Include="Services\EmployeeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HolidayDetailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\DataAccessLayer.csproj">

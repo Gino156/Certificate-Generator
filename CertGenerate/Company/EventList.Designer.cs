@@ -37,8 +37,12 @@
             this.bbiNew = new DevExpress.XtraBars.BarButtonItem();
             this.bbiEdit = new DevExpress.XtraBars.BarButtonItem();
             this.bbiDelete = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiNewEvent = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiEditEvent = new DevExpress.XtraBars.BarButtonItem();
+            this.bbiDeleteEvent = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.gcEventType = new DevExpress.XtraGrid.GridControl();
             this.vwEventTypeBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -56,10 +60,6 @@
             this.colEventTypeId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
             this.schedulerDataStorage1 = new DevExpress.XtraScheduler.SchedulerDataStorage(this.components);
-            this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.bbiNewEvent = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiEditEvent = new DevExpress.XtraBars.BarButtonItem();
-            this.bbiDeleteEvent = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -117,6 +117,27 @@
             this.bbiDelete.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiDelete.ImageOptions.SvgImage")));
             this.bbiDelete.Name = "bbiDelete";
             // 
+            // bbiNewEvent
+            // 
+            this.bbiNewEvent.Caption = "New Event";
+            this.bbiNewEvent.Id = 19;
+            this.bbiNewEvent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiNewEvent.ImageOptions.SvgImage")));
+            this.bbiNewEvent.Name = "bbiNewEvent";
+            // 
+            // bbiEditEvent
+            // 
+            this.bbiEditEvent.Caption = "Edit Event";
+            this.bbiEditEvent.Id = 20;
+            this.bbiEditEvent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiEditEvent.ImageOptions.SvgImage")));
+            this.bbiEditEvent.Name = "bbiEditEvent";
+            // 
+            // bbiDeleteEvent
+            // 
+            this.bbiDeleteEvent.Caption = "Delete Event";
+            this.bbiDeleteEvent.Id = 21;
+            this.bbiDeleteEvent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiDeleteEvent.ImageOptions.SvgImage")));
+            this.bbiDeleteEvent.Name = "bbiDeleteEvent";
+            // 
             // ribbonPage1
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -132,6 +153,14 @@
             this.ribbonPageGroup1.ItemLinks.Add(this.bbiDelete);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Event Type Actions";
+            // 
+            // ribbonPageGroup2
+            // 
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiNewEvent);
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiEditEvent);
+            this.ribbonPageGroup2.ItemLinks.Add(this.bbiDeleteEvent);
+            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
+            this.ribbonPageGroup2.Text = "Events Actions";
             // 
             // splitContainerControl1
             // 
@@ -231,41 +260,38 @@
             this.colEventTypeId1});
             this.gvEvents.GridControl = this.gcEvents;
             this.gvEvents.Name = "gvEvents";
+            this.gvEvents.OptionsBehavior.Editable = false;
             // 
             // colEventsId
             // 
             this.colEventsId.FieldName = "EventsId";
             this.colEventsId.Name = "colEventsId";
-            this.colEventsId.Visible = true;
-            this.colEventsId.VisibleIndex = 0;
             // 
             // colTitle
             // 
             this.colTitle.FieldName = "Title";
             this.colTitle.Name = "colTitle";
             this.colTitle.Visible = true;
-            this.colTitle.VisibleIndex = 1;
+            this.colTitle.VisibleIndex = 0;
             // 
             // colstart_date
             // 
             this.colstart_date.FieldName = "start_date";
             this.colstart_date.Name = "colstart_date";
             this.colstart_date.Visible = true;
-            this.colstart_date.VisibleIndex = 2;
+            this.colstart_date.VisibleIndex = 1;
             // 
             // colend_date
             // 
             this.colend_date.FieldName = "end_date";
             this.colend_date.Name = "colend_date";
             this.colend_date.Visible = true;
-            this.colend_date.VisibleIndex = 3;
+            this.colend_date.VisibleIndex = 2;
             // 
             // colEventTypeId1
             // 
             this.colEventTypeId1.FieldName = "EventTypeId";
             this.colEventTypeId1.Name = "colEventTypeId1";
-            this.colEventTypeId1.Visible = true;
-            this.colEventTypeId1.VisibleIndex = 4;
             // 
             // schedulerControl1
             // 
@@ -307,35 +333,6 @@
             this.schedulerDataStorage1.Appointments.Mappings.Label = "LabelId";
             this.schedulerDataStorage1.Appointments.Mappings.Start = "StartDate";
             this.schedulerDataStorage1.Appointments.Mappings.Subject = "Subject";
-            // 
-            // ribbonPageGroup2
-            // 
-            this.ribbonPageGroup2.ItemLinks.Add(this.bbiNewEvent);
-            this.ribbonPageGroup2.ItemLinks.Add(this.bbiEditEvent);
-            this.ribbonPageGroup2.ItemLinks.Add(this.bbiDeleteEvent);
-            this.ribbonPageGroup2.Name = "ribbonPageGroup2";
-            this.ribbonPageGroup2.Text = "Events Actions";
-            // 
-            // bbiNewEvent
-            // 
-            this.bbiNewEvent.Caption = "New Event";
-            this.bbiNewEvent.Id = 19;
-            this.bbiNewEvent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiNewEvent.ImageOptions.SvgImage")));
-            this.bbiNewEvent.Name = "bbiNewEvent";
-            // 
-            // bbiEditEvent
-            // 
-            this.bbiEditEvent.Caption = "Edit Event";
-            this.bbiEditEvent.Id = 20;
-            this.bbiEditEvent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiEditEvent.ImageOptions.SvgImage")));
-            this.bbiEditEvent.Name = "bbiEditEvent";
-            // 
-            // bbiDeleteEvent
-            // 
-            this.bbiDeleteEvent.Caption = "Delete Event";
-            this.bbiDeleteEvent.Id = 21;
-            this.bbiDeleteEvent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("bbiDeleteEvent.ImageOptions.SvgImage")));
-            this.bbiDeleteEvent.Name = "bbiDeleteEvent";
             // 
             // EventList
             // 

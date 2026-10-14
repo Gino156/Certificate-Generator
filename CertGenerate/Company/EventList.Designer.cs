@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventList));
-            DevExpress.XtraScheduler.TimeRuler timeRuler7 = new DevExpress.XtraScheduler.TimeRuler();
-            DevExpress.XtraScheduler.TimeRuler timeRuler8 = new DevExpress.XtraScheduler.TimeRuler();
-            DevExpress.XtraScheduler.TimeRuler timeRuler9 = new DevExpress.XtraScheduler.TimeRuler();
+            DevExpress.XtraScheduler.TimeRuler timeRuler1 = new DevExpress.XtraScheduler.TimeRuler();
+            DevExpress.XtraScheduler.TimeRuler timeRuler2 = new DevExpress.XtraScheduler.TimeRuler();
+            DevExpress.XtraScheduler.TimeRuler timeRuler3 = new DevExpress.XtraScheduler.TimeRuler();
             this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.bbiNew = new DevExpress.XtraBars.BarButtonItem();
             this.bbiEdit = new DevExpress.XtraBars.BarButtonItem();
@@ -164,7 +164,6 @@
             // 
             // splitContainerControl1
             // 
-            this.splitContainerControl1.Collapsed = true;
             this.splitContainerControl1.CollapsePanel = DevExpress.XtraEditors.SplitCollapsePanel.Panel1;
             this.splitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerControl1.FixedPanel = DevExpress.XtraEditors.SplitFixedPanel.None;
@@ -185,7 +184,7 @@
             this.gcEventType.MainView = this.gvEventType;
             this.gcEventType.MenuManager = this.ribbonControl1;
             this.gcEventType.Name = "gcEventType";
-            this.gcEventType.Size = new System.Drawing.Size(0, 0);
+            this.gcEventType.Size = new System.Drawing.Size(100, 458);
             this.gcEventType.TabIndex = 0;
             this.gcEventType.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvEventType});
@@ -229,8 +228,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.schedulerControl1);
-            this.splitContainer1.Size = new System.Drawing.Size(957, 458);
-            this.splitContainer1.SplitterDistance = 443;
+            this.splitContainer1.Size = new System.Drawing.Size(857, 458);
+            this.splitContainer1.SplitterDistance = 396;
             this.splitContainer1.TabIndex = 2;
             // 
             // gcEvents
@@ -241,7 +240,7 @@
             this.gcEvents.MainView = this.gvEvents;
             this.gcEvents.MenuManager = this.ribbonControl1;
             this.gcEvents.Name = "gcEvents";
-            this.gcEvents.Size = new System.Drawing.Size(443, 458);
+            this.gcEvents.Size = new System.Drawing.Size(396, 458);
             this.gcEvents.TabIndex = 1;
             this.gcEvents.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvEvents});
@@ -307,17 +306,17 @@
             this.schedulerControl1.OptionsCustomization.AllowAppointmentDrag = DevExpress.XtraScheduler.UsedAppointmentType.None;
             this.schedulerControl1.OptionsCustomization.AllowAppointmentDragBetweenResources = DevExpress.XtraScheduler.UsedAppointmentType.None;
             this.schedulerControl1.OptionsCustomization.AllowAppointmentEdit = DevExpress.XtraScheduler.UsedAppointmentType.None;
-            this.schedulerControl1.Size = new System.Drawing.Size(510, 458);
+            this.schedulerControl1.Size = new System.Drawing.Size(457, 458);
             this.schedulerControl1.Start = new System.DateTime(2026, 10, 4, 0, 0, 0, 0);
             this.schedulerControl1.TabIndex = 0;
             this.schedulerControl1.Text = "schedulerControl1";
-            this.schedulerControl1.Views.DayView.TimeRulers.Add(timeRuler7);
-            this.schedulerControl1.Views.FullWeekView.TimeRulers.Add(timeRuler8);
+            this.schedulerControl1.Views.DayView.TimeRulers.Add(timeRuler1);
+            this.schedulerControl1.Views.FullWeekView.TimeRulers.Add(timeRuler2);
             this.schedulerControl1.Views.GanttView.Enabled = false;
             this.schedulerControl1.Views.TimelineView.Enabled = false;
             this.schedulerControl1.Views.WeekView.Enabled = false;
             this.schedulerControl1.Views.WorkWeekView.Enabled = false;
-            this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler9);
+            this.schedulerControl1.Views.WorkWeekView.TimeRulers.Add(timeRuler3);
             // 
             // schedulerDataStorage1
             // 

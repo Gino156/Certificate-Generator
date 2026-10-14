@@ -21,19 +21,23 @@ namespace CertGenerate.Company
             InitializeComponent();
             ribbonControl1.MdiMergeStyle = DevExpress.XtraBars.Ribbon.RibbonMdiMergeStyle.Always;
             gvEventType.InitDefaultGridState();
+
             Load += async (o, e) =>
             {
                 InitButtonActions();
                 await LoadDataSource();
                 await LoadEventTypeDataSource();
+                await LoadCalendarAsync("Default");
             };
         }
+
         private async Task LoadDataSource() //Event
         {
             var eve = new EventService();
             var datasource = await eve.GetViewAsync();
             gcEvents.DataSource = datasource;
         }
+
         private async Task LoadEventTypeDataSource() //Event Type
         {
             var eventType = new EventTypeService();
@@ -69,11 +73,6 @@ namespace CertGenerate.Company
                 await EditEvent();
             };
 
-
-            gvEventType.FocusedRowChanged += async (o, e) =>
-            {
-                splitContainerControl1.Collapsed = false;
-            };
             gvEventType.DoubleClick += async (o, e) =>
             {
                 await EditEventType();
@@ -82,50 +81,54 @@ namespace CertGenerate.Company
             {
                 await EditEvent();
             };
-
         }
+
         private async Task LoadCalendarAsync(string calendarType)
         {
-            if (schedulerDataStorage1 == null || schedulerDataStorage1.Appointments == null) return;
+            if (schedulerDataStorage1?.Appointments == null) return;
 
             var now = DateTime.Now;
 
             if (schedulerControl1 != null)
             {
                 var firstDay = new DateTime(now.Year, now.Month, 1);
-                var lastDay = firstDay.AddMonths(1).AddDays(-1);
-
                 schedulerControl1.Start = firstDay;
-                //schedulerControl1.LimitInterval.Start = firstDay;
-                //schedulerControl1.LimitInterval.End = lastDay.AddDays(1);
             }
 
+            try
+            {
+                var service = new EmployeeService();
+                var employeeList = await service.GetViewAsync();
 
-                    var service = new EmployeeService();
-                    var employeeList = await service.GetViewAsync();
+                if (employeeList == null) return;
 
-                    if (employeeList == null) return;
-                    var birthdayAppointments = employeeList
-                        .Where(emp => emp != null && emp.BirthDate.HasValue)
-                        .Select(emp => new
-                        {
-                            Subject = $"{emp.FullName}🎂",
-                            StartDate = new DateTime(now.Year, emp.BirthDate.Value.Month, emp.BirthDate.Value.Day),
-                            EndDate = new DateTime(now.Year, emp.BirthDate.Value.Month, emp.BirthDate.Value.Day),
-                            AllDay = true,
-                            LabelId = 8
-                        })
-                        .ToList();
+                var birthdayAppointments = employeeList
+                    .Where(emp => emp != null && emp.BirthDate.HasValue)
+                    .Select(emp => new
+                    {
+                        Subject = $"{emp.FullName}🎂",
+                        StartDate = new DateTime(now.Year, emp.BirthDate.Value.Month, emp.BirthDate.Value.Day),
+                        EndDate = new DateTime(now.Year, emp.BirthDate.Value.Month, emp.BirthDate.Value.Day),
+                        AllDay = true,
+                        LabelId = 8
+                    })
+                    .ToList();
 
-                    schedulerDataStorage1.Appointments.DataSource = birthdayAppointments;
-
+                schedulerDataStorage1.Appointments.DataSource = birthdayAppointments;
+            }
+            catch (Exception ex)
+            {
+                XtraMessageBox.Show($"Error loading calendar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
         private async Task AddEventType() //Event Type
         {
             var form = new EventTypeEditForm(new EventType());
             form.ShowDialog();
             await LoadEventTypeDataSource();
         }
+
         private async Task AddEvent() //Event
         {
             var form = new EventsEditForm(new Event());
@@ -136,19 +139,29 @@ namespace CertGenerate.Company
         private async Task EditEventType() //Event Type
         {
             var id = gvEventType.GetRecordId(nameof(EventType.EventTypeId));
+            if (id <= 0) return;
+
             var type = await new EventTypeService().GetByIdAsync(id);
+            if (type == null) return;
+
             var form = new EventTypeEditForm(type);
             form.ShowDialog();
             await LoadEventTypeDataSource();
         }
+
         private async Task EditEvent() //Event
         {
             var id = gvEvents.GetRecordId(nameof(Event.EventsId));
+            if (id <= 0) return;
+
             var ev = await new EventService().GetByIdAsync(id);
+            if (ev == null) return;
+
             var form = new EventsEditForm(ev);
             form.ShowDialog();
             await LoadDataSource();
         }
+
         private async Task DeleteEventType() //Event Type
         {
             var id = gvEventType.GetRecordId(nameof(EventType.EventTypeId));
@@ -182,6 +195,7 @@ namespace CertGenerate.Company
                 }
             }
         }
+
         private async Task DeleteEvent() //Event
         {
             var id = gvEvents.GetRecordId(nameof(Event.EventsId));
@@ -191,7 +205,7 @@ namespace CertGenerate.Company
                 return;
             }
 
-            var confirm = XtraMessageBox.Show("Are you sure you want to delete this event type?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirm = XtraMessageBox.Show("Are you sure you want to delete this event?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
                 try
@@ -200,13 +214,13 @@ namespace CertGenerate.Company
                     bool success = await service.DeleteAsync(id);
                     if (success)
                     {
-                        XtraMessageBox.Show("Event Type successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("Event successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await LoadDataSource();
                         splitContainerControl1.Collapsed = true;
                     }
                     else
                     {
-                        XtraMessageBox.Show("Failed to delete the event type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show("Failed to delete the event.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
@@ -216,6 +230,5 @@ namespace CertGenerate.Company
                 }
             }
         }
-
     }
 }

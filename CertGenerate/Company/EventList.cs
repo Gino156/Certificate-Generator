@@ -223,7 +223,8 @@ namespace CertGenerate.Company
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show($"An error occurred while deleting: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    var innerMessage = ex.InnerException?.InnerException?.Message ?? ex.InnerException?.Message ?? ex.Message;
+                    XtraMessageBox.Show($"Detailed Error: {innerMessage}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

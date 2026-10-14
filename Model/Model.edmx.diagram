@@ -5,20 +5,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d1f61f591f6f42d788819821bf527d89" Name="Diagram1" ZoomLevel="73">
-        <EntityTypeShape EntityType="CertProjectDBModel.Employee" Width="1.5" PointX="5.5" PointY="1.125" />
-        <EntityTypeShape EntityType="CertProjectDBModel.vw_Employee" Width="1.5" PointX="4" PointY="1.125" FillColor="Yellow" />
-        <EntityTypeShape EntityType="CertProjectDBModel.BirthdayDetail" Width="1.5" PointX="8.375" PointY="1.125" />
-        <EntityTypeShape EntityType="CertProjectDBModel.CompanyEventDetail" Width="1.75" PointX="6.125" PointY="8.625" />
-        <EntityTypeShape EntityType="CertProjectDBModel.EventType" Width="1.5" PointX="12" PointY="8.625" FillColor="0, 122, 204" />
-        <EntityTypeShape EntityType="CertProjectDBModel.HolidayDetail" Width="1.5" PointX="8.5" PointY="8.625" />
-        <EntityTypeShape EntityType="CertProjectDBModel.vw_EventType" Width="1.5" PointX="10.5" PointY="8.625" FillColor="Yellow" />
-        <AssociationConnector Association="CertProjectDBModel.FK_BirthDayDetails_Employees" />
-        <EntityTypeShape EntityType="CertProjectDBModel.Event" Width="1.5" PointX="8.375" PointY="4.875" />
-        <AssociationConnector Association="CertProjectDBModel.FK_BirthdayDetails_Events" />
-        <AssociationConnector Association="CertProjectDBModel.FK_CompanyEventDetails_Events" />
+        <EntityTypeShape EntityType="CertProjectDBModel.Employee" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CertProjectDBModel.Event" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="CertProjectDBModel.EventType" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="CertProjectDBModel.vw_Employee" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CertProjectDBModel.vw_Events" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="CertProjectDBModel.vw_EventType" Width="1.5" PointX="5.75" PointY="0.75" />
         <AssociationConnector Association="CertProjectDBModel.FK_Events_EventType" />
-        <AssociationConnector Association="CertProjectDBModel.FK_HolidayDetails_Events" />
-        <EntityTypeShape EntityType="CertProjectDBModel.vw_Events" Width="1.5" PointX="6.875" PointY="4.875" FillColor="Yellow" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

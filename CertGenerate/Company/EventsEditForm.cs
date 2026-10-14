@@ -11,14 +11,12 @@ using DevExpress.XtraEditors;
 using Model;
 using Service.Employee;
 using CertGenerate.Helper;
-using Service.Services;
 
 namespace CertGenerate.Company
 {
     public partial class EventsEditForm : DevExpress.XtraEditors.XtraForm
     {
         private Event _event;
-        private HolidayDetail _holidayDetail;
         private Employee _employee;
 
         public EventsEditForm(Event Event)
@@ -26,7 +24,6 @@ namespace CertGenerate.Company
             InitializeComponent();
 
             _event = Event ?? new Event();
-            _holidayDetail = new HolidayDetail();
             _employee = new Employee();
 
             BindControls();
@@ -165,40 +162,6 @@ namespace CertGenerate.Company
             else
             {
                 success = await eventService.UpdateAsync(_event);
-            }
-
-            if (success)
-            {
-                int generatedEventsId = _event.EventsId;
-                if (eventTypeId == 1)
-                {
-                    await new BirthdayDetailService().InsertAsync(new BirthdayDetail
-                    {
-                        EventsId = generatedEventsId,
-                        EmployeeID = _employee.EmployeeID
-                    });
-                }
-                else if (eventTypeId == 5)
-                {
-                    await new HolidayDetailService().InsertAsync(new HolidayDetail
-                    {
-                        EventsId = generatedEventsId
-                    });
-                }
-                else if (eventTypeId == 6)
-                {
-                    await new CompanyEventDetailService().InsertAsync(new CompanyEventDetail
-                    {
-                        EventsId = generatedEventsId
-                    });
-                }
-
-                XtraMessageBox.Show("Successfully saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Close();
-            }
-            else
-            {
-                XtraMessageBox.Show("Failed to save event.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

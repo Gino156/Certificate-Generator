@@ -176,6 +176,18 @@ namespace CertGenerate.Company
             {
                 try
                 {
+                   
+                    var eventService = new EventService();
+                    var allEvents = await eventService.GetViewAsync(); 
+
+                    bool isUsed = allEvents != null && allEvents.Any(e => e.EventTypeId == id); 
+
+                    if (isUsed)
+                    {
+                        XtraMessageBox.Show("Cannot delete this Event Type because it is currently being used by existing Events.", "Restricted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     var service = new EventTypeService();
                     bool success = await service.DeleteAsync(id);
                     if (success)
@@ -191,7 +203,16 @@ namespace CertGenerate.Company
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show($"An error occurred while deleting: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Fallback sakaling sumabog sa database (Foreign Key violation exception)
+                    var innerMessage = ex.InnerException?.InnerException?.Message ?? ex.InnerException?.Message ?? ex.Message;
+                    if (innerMessage.Contains("REFERENCE constraint") || innerMessage.Contains("FK_"))
+                    {
+                        XtraMessageBox.Show("Cannot delete this Event Type because it is referenced by existing events.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        XtraMessageBox.Show($"An error occurred while deleting: {innerMessage}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -216,7 +237,6 @@ namespace CertGenerate.Company
                     {
                         XtraMessageBox.Show("Event successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await LoadDataSource();
-                        splitContainerControl1.Collapsed = true;
                     }
                     else
                     {

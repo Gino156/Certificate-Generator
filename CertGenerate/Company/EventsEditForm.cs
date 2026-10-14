@@ -17,18 +17,14 @@ namespace CertGenerate.Company
     public partial class EventsEditForm : DevExpress.XtraEditors.XtraForm
     {
         private Event _event;
-        private Employee _employee;
 
         public EventsEditForm(Event Event)
         {
             InitializeComponent();
 
             _event = Event ?? new Event();
-            _employee = new Employee();
 
             BindControls();
-
-            sluEventType.EditValueChanged += SluEventType_EditValueChanged;
 
             btnSave.Click += async (o, e) =>
             {
@@ -38,10 +34,7 @@ namespace CertGenerate.Company
             Load += async (o, e) =>
             {
                 await LoadEventTypeDataSource();
-                await LoadEmployeeDataSource();
-                LoadHolidayTypeDataSource();
-
-                ToggleFieldVisibility();
+                await LoadHolidayTypeDataSource();
             };
         }
 
@@ -63,30 +56,24 @@ namespace CertGenerate.Company
             );
         }
 
-        private async Task LoadEmployeeDataSource()
+        private async Task LoadHolidayTypeDataSource()
         {
-            var employees = await new EmployeeService().GetAllAsync();
-            var datasource = employees.Select(x => new
+            var holidayService = new GenericService<HolidayType>();
+            var holidays = await holidayService.GetAllAsync();
+
+            var datasource = holidays.Select(x => new
             {
-                x.EmployeeID,
-                x.FullName
+                x.HolidayTypeId,
+                x.HolidayTypeName
             }).ToList();
 
             SearchLookupHelper.BindSearchLookUp(
-                sluEmployee,
+                sluHolidayType,
                 datasource,
-                "EmployeeID",
-                "FullName",
-                "Select Employee..."
+                "HolidayTypeId",
+                "HolidayTypeName",
+                "Select Holiday Type..."
             );
-        }
-
-        private void LoadHolidayTypeDataSource()
-        {
-            cmbHolidayType.Properties.Items.Clear();
-            cmbHolidayType.Properties.Items.Add("Regular Holiday");
-            cmbHolidayType.Properties.Items.Add("Special Non-Working Holiday");
-            cmbHolidayType.Properties.Items.Add("Special Working Holiday");
         }
 
         public void BindControls()
@@ -97,42 +84,9 @@ namespace CertGenerate.Company
             dtStartDate.DataBindings.Add("EditValue", _event, nameof(_event.start_date), true, mode);
             dtEndDate.DataBindings.Add("EditValue", _event, nameof(_event.end_date), true, mode);
             sluEventType.DataBindings.Add("EditValue", _event, nameof(_event.EventTypeId), true, mode);
-
-            sluEmployee.DataBindings.Add("EditValue", _employee, nameof(_employee.EmployeeID), true, mode);
-
+            sluHolidayType.DataBindings.Add("EditValue", _event, nameof(_event.HolidayTypeId), true, mode);
         }
 
-        private void SluEventType_EditValueChanged(object sender, EventArgs e)
-        {
-            ToggleFieldVisibility();
-        }
-
-        private void ToggleFieldVisibility()
-        {
-            if (sluEventType.EditValue != null && int.TryParse(sluEventType.EditValue.ToString(), out int eventTypeId))
-            {
-                if (eventTypeId == 1) // Birthday
-                {
-                    lciEmployee.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                    lciHoliday.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                }
-                else if (eventTypeId == 5) // Holiday
-                {
-                    lciHoliday.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always;
-                    lciEmployee.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                }
-                else if (eventTypeId == 6) // Company
-                {
-                    lciHoliday.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                    lciEmployee.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                }
-                else
-                {
-                    lciEmployee.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                    lciHoliday.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never;
-                }
-            }
-        }
 
         public async Task Save()
         {
@@ -145,11 +99,14 @@ namespace CertGenerate.Company
 
             int eventTypeId = _event.EventTypeId ?? 0;
 
-            if (eventTypeId == 1 && _employee.EmployeeID == 0)
+            if (eventTypeId == 1)
             {
                 XtraMessageBox.Show("Please select an employee for this birthday event.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                sluEmployee.Focus();
                 return;
+            }
+            if (eventTypeId != 5)
+            {
+                _event.HolidayTypeId = null;
             }
 
             var eventService = new EventService();
@@ -162,6 +119,16 @@ namespace CertGenerate.Company
             else
             {
                 success = await eventService.UpdateAsync(_event);
+            }
+
+            if (success)
+            {
+                XtraMessageBox.Show("Successfully saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Close();
+            }
+            else
+            {
+                XtraMessageBox.Show("Failed to save event.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -20,7 +20,7 @@ namespace CertGenerate.Company
     public partial class EmployeeList2 : DevExpress.XtraEditors.XtraUserControl
     {
         Employee _employee;
-        vw_Employee _viewEmployee;
+        vw_Employees _viewEmployee;
         public EmployeeList2()
         {
             InitializeComponent();
@@ -80,7 +80,7 @@ namespace CertGenerate.Company
 
             var service = new EmployeeService();
             _employee = await service.GetByIdAsync(id) ?? new Employee();
-            _viewEmployee = await service.GetViewAsyncById(id) ?? new vw_Employee();
+            _viewEmployee = await service.GetViewAsyncById(id) ?? new vw_Employees();
 
             BindControls();
             btnSave.Enabled = true;
@@ -89,7 +89,7 @@ namespace CertGenerate.Company
         private void GenerateReport(string reportType) //Generate Multiple Report
         {
             var employees = gvEmployee2.GetSelectedRows()?
-            .Select(rowHandle => gvEmployee2.GetRow(rowHandle) as vw_Employee)
+            .Select(rowHandle => gvEmployee2.GetRow(rowHandle) as vw_Employees)
             .Where(emp => emp != null)
             .ToList();
 

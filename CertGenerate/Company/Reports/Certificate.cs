@@ -10,9 +10,9 @@ namespace CertGenerate.Company
 {
     public partial class Certificate : DevExpress.XtraReports.UI.XtraReport
     {
-        List<vw_Employee> _employee;
+        List<vw_Employees> _employee;
 
-        public Certificate(List<vw_Employee> employees)
+        public Certificate(List<vw_Employees> employees)
         {
             InitializeComponent();
             _employee = employees;

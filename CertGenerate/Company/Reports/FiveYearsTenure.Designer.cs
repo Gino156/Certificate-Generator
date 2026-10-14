@@ -353,7 +353,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(Model.vw_Employee);
+            this.objectDataSource1.DataSource = typeof(Model.vw_Employees);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // FiveYearsTenure

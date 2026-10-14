@@ -44,11 +44,9 @@
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.sluEmployee = new DevExpress.XtraEditors.SearchLookUpEdit();
-            this.lciEmployee = new DevExpress.XtraLayout.LayoutControlItem();
-            this.searchLookUpEdit2View = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.cmbHolidayType = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.lciHoliday = new DevExpress.XtraLayout.LayoutControlItem();
+            this.sluHolidayType = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sluEventType.Properties)).BeginInit();
@@ -66,17 +64,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sluEmployee.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciEmployee)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2View)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbHolidayType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciHoliday)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sluHolidayType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.cmbHolidayType);
-            this.layoutControl1.Controls.Add(this.sluEmployee);
+            this.layoutControl1.Controls.Add(this.sluHolidayType);
             this.layoutControl1.Controls.Add(this.sluEventType);
             this.layoutControl1.Controls.Add(this.btnSave);
             this.layoutControl1.Controls.Add(this.dtEndDate);
@@ -112,7 +107,7 @@
             // btnSave
             // 
             this.btnSave.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSave.ImageOptions.SvgImage")));
-            this.btnSave.Location = new System.Drawing.Point(384, 156);
+            this.btnSave.Location = new System.Drawing.Point(384, 132);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(161, 36);
             this.btnSave.StyleController = this.layoutControl1;
@@ -122,7 +117,7 @@
             // dtEndDate
             // 
             this.dtEndDate.EditValue = null;
-            this.dtEndDate.Location = new System.Drawing.Point(77, 84);
+            this.dtEndDate.Location = new System.Drawing.Point(77, 108);
             this.dtEndDate.Name = "dtEndDate";
             this.dtEndDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -135,7 +130,7 @@
             // dtStartDate
             // 
             this.dtStartDate.EditValue = null;
-            this.dtStartDate.Location = new System.Drawing.Point(77, 60);
+            this.dtStartDate.Location = new System.Drawing.Point(77, 84);
             this.dtStartDate.Name = "dtStartDate";
             this.dtStartDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -147,7 +142,7 @@
             // 
             // txtTitle
             // 
-            this.txtTitle.Location = new System.Drawing.Point(77, 36);
+            this.txtTitle.Location = new System.Drawing.Point(77, 60);
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(468, 20);
             this.txtTitle.StyleController = this.layoutControl1;
@@ -164,9 +159,8 @@
             this.enddate,
             this.layoutControlItem4,
             this.emptySpaceItem2,
-            this.lciEmployee,
             this.layoutControlItem1,
-            this.lciHoliday});
+            this.layoutControlItem2});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(557, 216);
             this.Root.TextVisible = false;
@@ -174,7 +168,7 @@
             // title
             // 
             this.title.Control = this.txtTitle;
-            this.title.Location = new System.Drawing.Point(0, 24);
+            this.title.Location = new System.Drawing.Point(0, 48);
             this.title.Name = "title";
             this.title.Size = new System.Drawing.Size(537, 24);
             this.title.Text = "Title";
@@ -183,15 +177,15 @@
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 184);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 160);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(537, 12);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(537, 36);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // startdate
             // 
             this.startdate.Control = this.dtStartDate;
-            this.startdate.Location = new System.Drawing.Point(0, 48);
+            this.startdate.Location = new System.Drawing.Point(0, 72);
             this.startdate.Name = "startdate";
             this.startdate.Size = new System.Drawing.Size(537, 24);
             this.startdate.Text = "Start Date";
@@ -200,7 +194,7 @@
             // enddate
             // 
             this.enddate.Control = this.dtEndDate;
-            this.enddate.Location = new System.Drawing.Point(0, 72);
+            this.enddate.Location = new System.Drawing.Point(0, 96);
             this.enddate.Name = "enddate";
             this.enddate.Size = new System.Drawing.Size(537, 24);
             this.enddate.Text = "End Date";
@@ -209,7 +203,7 @@
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnSave;
-            this.layoutControlItem4.Location = new System.Drawing.Point(372, 144);
+            this.layoutControlItem4.Location = new System.Drawing.Point(372, 120);
             this.layoutControlItem4.Name = "layoutControlItem4";
             this.layoutControlItem4.Size = new System.Drawing.Size(165, 40);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
@@ -218,7 +212,7 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 144);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(0, 120);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(372, 40);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -232,57 +226,33 @@
             this.layoutControlItem1.Text = "Event Type";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(62, 13);
             // 
-            // sluEmployee
+            // sluHolidayType
             // 
-            this.sluEmployee.Location = new System.Drawing.Point(77, 132);
-            this.sluEmployee.Name = "sluEmployee";
-            this.sluEmployee.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.sluHolidayType.Location = new System.Drawing.Point(77, 36);
+            this.sluHolidayType.Name = "sluHolidayType";
+            this.sluHolidayType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.sluEmployee.Properties.NullText = "Select Employee...";
-            this.sluEmployee.Properties.PopupView = this.searchLookUpEdit2View;
-            this.sluEmployee.Size = new System.Drawing.Size(468, 20);
-            this.sluEmployee.StyleController = this.layoutControl1;
-            this.sluEmployee.TabIndex = 10;
+            this.sluHolidayType.Properties.NullText = "";
+            this.sluHolidayType.Properties.PopupView = this.gridView1;
+            this.sluHolidayType.Size = new System.Drawing.Size(468, 20);
+            this.sluHolidayType.StyleController = this.layoutControl1;
+            this.sluHolidayType.TabIndex = 9;
             // 
-            // lciEmployee
+            // layoutControlItem2
             // 
-            this.lciEmployee.Control = this.sluEmployee;
-            this.lciEmployee.Location = new System.Drawing.Point(0, 120);
-            this.lciEmployee.Name = "lciEmployee";
-            this.lciEmployee.Size = new System.Drawing.Size(537, 24);
-            this.lciEmployee.Text = "Employee";
-            this.lciEmployee.TextSize = new System.Drawing.Size(62, 13);
+            this.layoutControlItem2.Control = this.sluHolidayType;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 24);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(537, 24);
+            this.layoutControlItem2.Text = "Holiday Type";
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(62, 13);
             // 
-            // searchLookUpEdit2View
+            // gridView1
             // 
-            this.searchLookUpEdit2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.searchLookUpEdit2View.Name = "searchLookUpEdit2View";
-            this.searchLookUpEdit2View.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.searchLookUpEdit2View.OptionsView.ShowGroupPanel = false;
-            // 
-            // cmbHolidayType
-            // 
-            this.cmbHolidayType.Location = new System.Drawing.Point(77, 108);
-            this.cmbHolidayType.Name = "cmbHolidayType";
-            this.cmbHolidayType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.cmbHolidayType.Properties.Items.AddRange(new object[] {
-            "Regular Holidays",
-            "Special Non-Working Holidays",
-            "Special Working Holidays"});
-            this.cmbHolidayType.Properties.NullText = "Select Holiday Type...";
-            this.cmbHolidayType.Size = new System.Drawing.Size(468, 20);
-            this.cmbHolidayType.StyleController = this.layoutControl1;
-            this.cmbHolidayType.TabIndex = 11;
-            // 
-            // lciHoliday
-            // 
-            this.lciHoliday.Control = this.cmbHolidayType;
-            this.lciHoliday.Location = new System.Drawing.Point(0, 96);
-            this.lciHoliday.Name = "lciHoliday";
-            this.lciHoliday.Size = new System.Drawing.Size(537, 24);
-            this.lciHoliday.Text = "Holiday Type";
-            this.lciHoliday.TextSize = new System.Drawing.Size(62, 13);
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // EventsEditForm
             // 
@@ -310,11 +280,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sluEmployee.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciEmployee)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit2View)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cmbHolidayType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lciHoliday)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sluHolidayType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -336,10 +304,8 @@
         private DevExpress.XtraEditors.SearchLookUpEdit sluEventType;
         private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit1View;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem1;
-        private DevExpress.XtraEditors.SearchLookUpEdit sluEmployee;
-        private DevExpress.XtraGrid.Views.Grid.GridView searchLookUpEdit2View;
-        private DevExpress.XtraLayout.LayoutControlItem lciEmployee;
-        private DevExpress.XtraEditors.ComboBoxEdit cmbHolidayType;
-        private DevExpress.XtraLayout.LayoutControlItem lciHoliday;
+        private DevExpress.XtraEditors.SearchLookUpEdit sluHolidayType;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
     }
 }

@@ -12,7 +12,7 @@ namespace Model
     using System;
     using System.Collections.Generic;
     
-    public partial class vw_Employee
+    public partial class vw_Employees
     {
         public int EmployeeID { get; set; }
         public string FullName { get; set; }

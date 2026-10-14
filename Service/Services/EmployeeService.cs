@@ -11,11 +11,11 @@ namespace Service.Employee
 {
     public class EmployeeService : GenericService<Model.Employee>
     {
-         public async Task<List<vw_Employee>> GetViewAsync()
+         public async Task<List<vw_Employees>> GetViewAsync()
         {
             try
             {
-                return await _context.vw_Employee
+                return await _context.vw_Employees
                                      .AsNoTracking()
                                      .ToListAsync();
             }
@@ -25,11 +25,11 @@ namespace Service.Employee
             }
         }
 
-        public async Task<vw_Employee> GetViewAsyncById(int id)
+        public async Task<vw_Employees> GetViewAsyncById(int id)
         {
             try
             {
-                return await _context.vw_Employee
+                return await _context.vw_Employees
                                      .AsNoTracking()
                                      .SingleOrDefaultAsync(x => x.EmployeeID == id);
             }

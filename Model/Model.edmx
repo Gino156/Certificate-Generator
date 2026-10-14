@@ -27,6 +27,7 @@
           <Property Name="start_date" Type="datetime" />
           <Property Name="end_date" Type="datetime" />
           <Property Name="EventTypeId" Type="int" />
+          <Property Name="HolidayTypeId" Type="int" />
         </EntityType>
         <EntityType Name="EventType">
           <Key>
@@ -35,9 +36,16 @@
           <Property Name="EventTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EventTypeName" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="HolidayType">
+          <Key>
+            <PropertyRef Name="HolidayTypeId" />
+          </Key>
+          <Property Name="HolidayTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HolidayTypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'CertProjectDB.dbo.vw_Employee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="vw_Employee">
+warning 6002: The table/view 'CertProjectDB.dbo.vw_Employees' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vw_Employees">
           <Key>
             <PropertyRef Name="EmployeeID" />
             <PropertyRef Name="FullName" />
@@ -86,21 +94,34 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Events_HolidayType">
+          <End Role="HolidayType" Type="Self.HolidayType" Multiplicity="0..1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HolidayType">
+              <PropertyRef Name="HolidayTypeId" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="HolidayTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="CertProjectDBModelStoreContainer">
           <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventType" EntityType="Self.EventType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="vw_Employee" EntityType="Self.vw_Employee" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="HolidayType" EntityType="Self.HolidayType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vw_Employees" EntityType="Self.vw_Employees" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [vw_Employee].[EmployeeID] AS [EmployeeID], 
-    [vw_Employee].[FullName] AS [FullName], 
-    [vw_Employee].[Department] AS [Department], 
-    [vw_Employee].[Position] AS [Position], 
-    [vw_Employee].[Status] AS [Status], 
-    [vw_Employee].[HireDate] AS [HireDate], 
-    [vw_Employee].[IsOJT] AS [IsOJT], 
-    [vw_Employee].[BirthDate] AS [BirthDate]
-    FROM [dbo].[vw_Employee] AS [vw_Employee]</DefiningQuery>
+    [vw_Employees].[EmployeeID] AS [EmployeeID], 
+    [vw_Employees].[FullName] AS [FullName], 
+    [vw_Employees].[Department] AS [Department], 
+    [vw_Employees].[Position] AS [Position], 
+    [vw_Employees].[Status] AS [Status], 
+    [vw_Employees].[HireDate] AS [HireDate], 
+    [vw_Employees].[IsOJT] AS [IsOJT], 
+    [vw_Employees].[BirthDate] AS [BirthDate]
+    FROM [dbo].[vw_Employees] AS [vw_Employees]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_Events" EntityType="Self.vw_Events" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -121,6 +142,10 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
             <End Role="EventType" EntitySet="EventType" />
             <End Role="Events" EntitySet="Events" />
           </AssociationSet>
+          <AssociationSet Name="FK_Events_HolidayType" Association="Self.FK_Events_HolidayType">
+            <End Role="HolidayType" EntitySet="HolidayType" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -130,13 +155,18 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <EntitySet Name="Employees" EntityType="CertProjectDBModel.Employee" />
           <EntitySet Name="Events" EntityType="CertProjectDBModel.Event" />
           <EntitySet Name="EventTypes" EntityType="CertProjectDBModel.EventType" />
-          <EntitySet Name="vw_Employee" EntityType="CertProjectDBModel.vw_Employee" />
+          <EntitySet Name="HolidayTypes" EntityType="CertProjectDBModel.HolidayType" />
           <EntitySet Name="vw_Events" EntityType="CertProjectDBModel.vw_Events" />
           <EntitySet Name="vw_EventType" EntityType="CertProjectDBModel.vw_EventType" />
           <AssociationSet Name="FK_Events_EventType" Association="CertProjectDBModel.FK_Events_EventType">
             <End Role="EventType" EntitySet="EventTypes" />
             <End Role="Event" EntitySet="Events" />
           </AssociationSet>
+          <AssociationSet Name="FK_Events_HolidayType" Association="CertProjectDBModel.FK_Events_HolidayType">
+            <End Role="HolidayType" EntitySet="HolidayTypes" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <EntitySet Name="vw_Employees" EntityType="CertProjectDBModel.vw_Employees" />
         </EntityContainer>
         <EntityType Name="Employee">
           <Key>
@@ -160,7 +190,9 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <Property Name="start_date" Type="DateTime" Precision="3" />
           <Property Name="end_date" Type="DateTime" Precision="3" />
           <Property Name="EventTypeId" Type="Int32" />
+          <Property Name="HolidayTypeId" Type="Int32" />
           <NavigationProperty Name="EventType" Relationship="CertProjectDBModel.FK_Events_EventType" FromRole="Event" ToRole="EventType" />
+          <NavigationProperty Name="HolidayType" Relationship="CertProjectDBModel.FK_Events_HolidayType" FromRole="Event" ToRole="HolidayType" />
         </EntityType>
         <EntityType Name="EventType">
           <Key>
@@ -170,21 +202,13 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <Property Name="EventTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Events" Relationship="CertProjectDBModel.FK_Events_EventType" FromRole="EventType" ToRole="Event" />
         </EntityType>
-        <EntityType Name="vw_Employee">
+        <EntityType Name="HolidayType">
           <Key>
-            <PropertyRef Name="EmployeeID" />
-            <PropertyRef Name="FullName" />
-            <PropertyRef Name="Department" />
-            <PropertyRef Name="Position" />
+            <PropertyRef Name="HolidayTypeId" />
           </Key>
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FullName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Department" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HireDate" Type="DateTime" Precision="0" />
-          <Property Name="IsOJT" Type="Boolean" />
-          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="HolidayTypeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HolidayTypeName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events" Relationship="CertProjectDBModel.FK_Events_HolidayType" FromRole="HolidayType" ToRole="Event" />
         </EntityType>
         <EntityType Name="vw_Events">
           <Key>
@@ -215,6 +239,34 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Events_HolidayType">
+          <End Type="CertProjectDBModel.HolidayType" Role="HolidayType" Multiplicity="0..1" />
+          <End Type="CertProjectDBModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HolidayType">
+              <PropertyRef Name="HolidayTypeId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="HolidayTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vw_Employees">
+          <Key>
+            <PropertyRef Name="EmployeeID" />
+            <PropertyRef Name="FullName" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="Position" />
+          </Key>
+          <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HireDate" Type="DateTime" Precision="0" />
+          <Property Name="IsOJT" Type="Boolean" />
+          <Property Name="BirthDate" Type="DateTime" Precision="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -238,6 +290,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <EntitySetMapping Name="Events">
             <EntityTypeMapping TypeName="CertProjectDBModel.Event">
               <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="HolidayTypeId" ColumnName="HolidayTypeId" />
                 <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
                 <ScalarProperty Name="end_date" ColumnName="end_date" />
                 <ScalarProperty Name="start_date" ColumnName="start_date" />
@@ -254,17 +307,11 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vw_Employee">
-            <EntityTypeMapping TypeName="CertProjectDBModel.vw_Employee">
-              <MappingFragment StoreEntitySet="vw_Employee">
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="IsOJT" ColumnName="IsOJT" />
-                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="FullName" ColumnName="FullName" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <EntitySetMapping Name="HolidayTypes">
+            <EntityTypeMapping TypeName="CertProjectDBModel.HolidayType">
+              <MappingFragment StoreEntitySet="HolidayType">
+                <ScalarProperty Name="HolidayTypeName" ColumnName="HolidayTypeName" />
+                <ScalarProperty Name="HolidayTypeId" ColumnName="HolidayTypeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -284,6 +331,20 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
               <MappingFragment StoreEntitySet="vw_EventType">
                 <ScalarProperty Name="EventTypeName" ColumnName="EventTypeName" />
                 <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vw_Employees">
+            <EntityTypeMapping TypeName="CertProjectDBModel.vw_Employees">
+              <MappingFragment StoreEntitySet="vw_Employees">
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="IsOJT" ColumnName="IsOJT" />
+                <ScalarProperty Name="HireDate" ColumnName="HireDate" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

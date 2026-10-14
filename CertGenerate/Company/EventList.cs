@@ -73,7 +73,6 @@ namespace CertGenerate.Company
             gvEventType.FocusedRowChanged += async (o, e) =>
             {
                 splitContainerControl1.Collapsed = false;
-                await LoadCalendarAsync("Birthday");
             };
             gvEventType.DoubleClick += async (o, e) =>
             {
@@ -97,13 +96,11 @@ namespace CertGenerate.Company
                 var lastDay = firstDay.AddMonths(1).AddDays(-1);
 
                 schedulerControl1.Start = firstDay;
-                schedulerControl1.LimitInterval.Start = firstDay;
-                schedulerControl1.LimitInterval.End = lastDay.AddDays(1);
+                //schedulerControl1.LimitInterval.Start = firstDay;
+                //schedulerControl1.LimitInterval.End = lastDay.AddDays(1);
             }
 
-            switch (calendarType)
-            {
-                case "Birthday":
+
                     var service = new EmployeeService();
                     var employeeList = await service.GetViewAsync();
 
@@ -121,16 +118,7 @@ namespace CertGenerate.Company
                         .ToList();
 
                     schedulerDataStorage1.Appointments.DataSource = birthdayAppointments;
-                    break;
 
-
-                default:
-                    schedulerDataStorage1.Appointments.DataSource = null;
-                    break;
-
-                case "test":
-                    break;
-            }
         }
         private async Task AddEventType() //Event Type
         {

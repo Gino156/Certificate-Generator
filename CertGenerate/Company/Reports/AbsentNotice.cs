@@ -10,9 +10,9 @@ namespace CertGenerate.Company.Reports
 {
     public partial class AbsentNotice : DevExpress.XtraReports.UI.XtraReport
     {
-        List<vw_Employee> _employee;
+        List<vw_Employees> _employee;
 
-        public AbsentNotice(List<vw_Employee> employees)
+        public AbsentNotice(List<vw_Employees> employees)
         {
             InitializeComponent();
             _employee = employees;

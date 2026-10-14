@@ -62,6 +62,9 @@
     <Compile Include="EventType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="HolidayType.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -78,7 +81,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="vw_Employee.cs">
+    <Compile Include="vw_Employees.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="vw_Events.cs">

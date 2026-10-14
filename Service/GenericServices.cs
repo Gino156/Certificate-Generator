@@ -45,7 +45,12 @@ namespace CertGenerate
         // 4. Update record
         public virtual void Update(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            var entry = _context.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                _dbSet.Attach(entity);
+            }
+            entry.State = EntityState.Modified;
             Save();
         }
 
@@ -107,7 +112,36 @@ namespace CertGenerate
         // 11. Async Update
         public virtual async Task<bool> UpdateAsync(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            // 1. Kunin ang Primary Key value ng entity para masigurong malinis ang pag-check
+            var objectContext = ((System.Data.Entity.Infrastructure.IObjectContextAdapter)_context).ObjectContext;
+            var set = objectContext.CreateObjectSet<T>();
+            var entityKey = set.EntitySet.ElementType.KeyMembers.Select(k => k.Name).FirstOrDefault();
+
+            // 2. Kunin ang ID value para i-check kung may nag-ti-track na sa context na ito
+            var propertyInfo = typeof(T).GetProperty(entityKey);
+            var keyValue = propertyInfo?.GetValue(entity, null);
+
+            if (keyValue != null)
+            {
+                // Hanapin kung may existing nang naka-track sa loob ng context na ito
+                var trackedEntity = _dbSet.Find(keyValue);
+                if (trackedEntity != null)
+                {
+                    // Kung meron na, i-copy ang mga bagong values mula sa edited entity papunta sa tracked entity
+                    _context.Entry(trackedEntity).CurrentValues.SetValues(entity);
+                }
+                else
+                {
+                    // Kung wala pa sa context na ito, i-attach at i-mark as modified
+                    var entry = _context.Entry(entity);
+                    if (entry.State == EntityState.Detached)
+                    {
+                        _dbSet.Attach(entity);
+                    }
+                    entry.State = EntityState.Modified;
+                }
+            }
+
             return await SaveAsync();
         }
 

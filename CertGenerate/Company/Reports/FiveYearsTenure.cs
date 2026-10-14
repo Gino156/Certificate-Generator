@@ -10,9 +10,9 @@ namespace CertGenerate.Company
 {
     public partial class FiveYearsTenure : DevExpress.XtraReports.UI.XtraReport
     {
-        List<vw_Employee> _employee;
+        List<vw_Employees> _employee;
 
-        public FiveYearsTenure(List<vw_Employee> employees)
+        public FiveYearsTenure(List<vw_Employees> employees)
         {
             InitializeComponent();
             _employee = employees;

@@ -28,8 +28,9 @@ namespace Model
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<Event> Events { get; set; }
         public virtual DbSet<EventType> EventTypes { get; set; }
-        public virtual DbSet<vw_Employee> vw_Employee { get; set; }
+        public virtual DbSet<HolidayType> HolidayTypes { get; set; }
         public virtual DbSet<vw_Events> vw_Events { get; set; }
         public virtual DbSet<vw_EventType> vw_EventType { get; set; }
+        public virtual DbSet<vw_Employees> vw_Employees { get; set; }
     }
 }

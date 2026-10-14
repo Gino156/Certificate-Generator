@@ -73,7 +73,7 @@ namespace CertGenerate.Company
             gvEventType.FocusedRowChanged += async (o, e) =>
             {
                 splitContainerControl1.Collapsed = false;
-                await LoadCalendarAsync("Birthdays");
+                await LoadCalendarAsync("Birthday");
             };
             gvEventType.DoubleClick += async (o, e) =>
             {
@@ -103,7 +103,7 @@ namespace CertGenerate.Company
 
             switch (calendarType)
             {
-                case "Birthdays":
+                case "Birthday":
                     var service = new EmployeeService();
                     var employeeList = await service.GetViewAsync();
 

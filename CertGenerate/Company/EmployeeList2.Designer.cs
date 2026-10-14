@@ -68,12 +68,13 @@
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.simpleLabelItem1 = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -101,11 +102,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -296,40 +298,43 @@
             // 
             // dtHireDate
             // 
+            this.dtHireDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dtHireDate.EditValue = null;
-            this.dtHireDate.Location = new System.Drawing.Point(412, 96);
+            this.dtHireDate.Location = new System.Drawing.Point(250, 96);
             this.dtHireDate.MenuManager = this.ribbonControl1;
             this.dtHireDate.Name = "dtHireDate";
             this.dtHireDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtHireDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtHireDate.Size = new System.Drawing.Size(146, 20);
+            this.dtHireDate.Size = new System.Drawing.Size(50, 20);
             this.dtHireDate.StyleController = this.layoutControl1;
             this.dtHireDate.TabIndex = 13;
             // 
             // dtBirthDate
             // 
+            this.dtBirthDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dtBirthDate.EditValue = null;
-            this.dtBirthDate.Location = new System.Drawing.Point(412, 142);
+            this.dtBirthDate.Location = new System.Drawing.Point(357, 96);
             this.dtBirthDate.MenuManager = this.ribbonControl1;
             this.dtBirthDate.Name = "dtBirthDate";
             this.dtBirthDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtBirthDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtBirthDate.Size = new System.Drawing.Size(146, 20);
+            this.dtBirthDate.Size = new System.Drawing.Size(50, 20);
             this.dtBirthDate.StyleController = this.layoutControl1;
             this.dtBirthDate.TabIndex = 12;
             // 
             // tsOJT
             // 
-            this.tsOJT.Location = new System.Drawing.Point(86, 120);
+            this.tsOJT.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.tsOJT.Location = new System.Drawing.Point(24, 137);
             this.tsOJT.MenuManager = this.ribbonControl1;
             this.tsOJT.Name = "tsOJT";
             this.tsOJT.Properties.OffText = "No";
             this.tsOJT.Properties.OnText = "Yes";
-            this.tsOJT.Size = new System.Drawing.Size(472, 18);
+            this.tsOJT.Size = new System.Drawing.Size(70, 18);
             this.tsOJT.StyleController = this.layoutControl1;
             this.tsOJT.TabIndex = 11;
             // 
@@ -343,7 +348,7 @@
             this.cmbStatus.Properties.Items.AddRange(new object[] {
             "Active",
             "Inactive"});
-            this.cmbStatus.Size = new System.Drawing.Size(163, 20);
+            this.cmbStatus.Size = new System.Drawing.Size(86, 20);
             this.cmbStatus.StyleController = this.layoutControl1;
             this.cmbStatus.TabIndex = 9;
             // 
@@ -405,11 +410,12 @@
             this.emptySpaceItem3,
             this.emptySpaceItem5,
             this.emptySpaceItem6,
-            this.simpleLabelItem1,
             this.layoutControlItem2,
+            this.emptySpaceItem2,
+            this.simpleLabelItem1,
+            this.layoutControlItem7,
             this.layoutControlItem8,
-            this.emptySpaceItem1,
-            this.layoutControlItem7});
+            this.emptySpaceItem1});
             this.lcg.Location = new System.Drawing.Point(0, 0);
             this.lcg.Name = "lcg";
             this.lcg.Size = new System.Drawing.Size(794, 372);
@@ -446,11 +452,8 @@
             // 
             this.layoutControlItem6.Control = this.cmbStatus;
             this.layoutControlItem6.Location = new System.Drawing.Point(0, 72);
-            this.layoutControlItem6.MaxSize = new System.Drawing.Size(227, 24);
-            this.layoutControlItem6.MinSize = new System.Drawing.Size(227, 24);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(227, 24);
-            this.layoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem6.Size = new System.Drawing.Size(150, 24);
             this.layoutControlItem6.Text = "Status";
             this.layoutControlItem6.TextSize = new System.Drawing.Size(57, 13);
             // 
@@ -477,71 +480,78 @@
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(227, 72);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(387, 72);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(101, 24);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(151, 41);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem6
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(0, 142);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(0, 135);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
-            this.emptySpaceItem6.Size = new System.Drawing.Size(538, 206);
+            this.emptySpaceItem6.Size = new System.Drawing.Size(538, 213);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // layoutControlItem2
+            // 
+            this.layoutControlItem2.Control = this.tsOJT;
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 113);
+            this.layoutControlItem2.Name = "layoutControlItem2";
+            this.layoutControlItem2.Size = new System.Drawing.Size(74, 22);
+            this.layoutControlItem2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem2.TextToControlDistance = 0;
+            this.layoutControlItem2.TextVisible = false;
             // 
             // simpleLabelItem1
             // 
             this.simpleLabelItem1.AllowHotTrack = false;
             this.simpleLabelItem1.Location = new System.Drawing.Point(0, 96);
             this.simpleLabelItem1.Name = "simpleLabelItem1";
-            this.simpleLabelItem1.Size = new System.Drawing.Size(62, 22);
+            this.simpleLabelItem1.Size = new System.Drawing.Size(150, 17);
             this.simpleLabelItem1.Text = "Is OJT?";
             this.simpleLabelItem1.TextSize = new System.Drawing.Size(57, 13);
             // 
-            // layoutControlItem2
+            // emptySpaceItem2
             // 
-            this.layoutControlItem2.Control = this.tsOJT;
-            this.layoutControlItem2.Location = new System.Drawing.Point(62, 96);
-            this.layoutControlItem2.MaxSize = new System.Drawing.Size(476, 22);
-            this.layoutControlItem2.MinSize = new System.Drawing.Size(476, 22);
-            this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(476, 22);
-            this.layoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem2.TextVisible = false;
-            // 
-            // layoutControlItem8
-            // 
-            this.layoutControlItem8.Control = this.dtBirthDate;
-            this.layoutControlItem8.Location = new System.Drawing.Point(328, 118);
-            this.layoutControlItem8.MaxSize = new System.Drawing.Size(210, 24);
-            this.layoutControlItem8.MinSize = new System.Drawing.Size(210, 24);
-            this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(210, 24);
-            this.layoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
-            this.layoutControlItem8.Text = "Birth Date";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(57, 13);
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 118);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(328, 24);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(74, 113);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(464, 22);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.dtHireDate;
-            this.layoutControlItem7.Location = new System.Drawing.Point(328, 72);
-            this.layoutControlItem7.MaxSize = new System.Drawing.Size(210, 24);
-            this.layoutControlItem7.MinSize = new System.Drawing.Size(210, 24);
+            this.layoutControlItem7.Location = new System.Drawing.Point(179, 72);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(210, 24);
-            this.layoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
+            this.layoutControlItem7.Size = new System.Drawing.Size(101, 41);
             this.layoutControlItem7.Text = "HireDate";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(57, 13);
+            this.layoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Left;
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(42, 13);
+            this.layoutControlItem7.TextToControlDistance = 5;
+            // 
+            // layoutControlItem8
+            // 
+            this.layoutControlItem8.Control = this.dtBirthDate;
+            this.layoutControlItem8.Location = new System.Drawing.Point(280, 72);
+            this.layoutControlItem8.Name = "layoutControlItem8";
+            this.layoutControlItem8.Size = new System.Drawing.Size(107, 41);
+            this.layoutControlItem8.Text = "Birth Date";
+            this.layoutControlItem8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem8.TextLocation = DevExpress.Utils.Locations.Left;
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(48, 13);
+            this.layoutControlItem8.TextToControlDistance = 5;
+            // 
+            // emptySpaceItem1
+            // 
+            this.emptySpaceItem1.AllowHotTrack = false;
+            this.emptySpaceItem1.Location = new System.Drawing.Point(150, 72);
+            this.emptySpaceItem1.Name = "emptySpaceItem1";
+            this.emptySpaceItem1.Size = new System.Drawing.Size(29, 41);
+            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // EmployeeList2
             // 
@@ -578,11 +588,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simpleLabelItem1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -627,12 +638,13 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem6;
         private DevExpress.XtraEditors.ToggleSwitch tsOJT;
-        private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem1;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
         private DevExpress.XtraEditors.DateEdit dtBirthDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraEditors.DateEdit dtHireDate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem2;
+        private DevExpress.XtraLayout.SimpleLabelItem simpleLabelItem1;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
     }
 }

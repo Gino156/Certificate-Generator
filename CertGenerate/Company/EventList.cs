@@ -73,6 +73,11 @@ namespace CertGenerate.Company
                 await EditEvent();
             };
 
+            bbiRefresh.ItemClick += async (o, e) =>
+            {
+                await LoadCalendarAsync("Default");
+            };
+
             gvEventType.DoubleClick += async (o, e) =>
             {
                 await EditEventType();

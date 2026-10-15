@@ -60,6 +60,8 @@
             this.colEventTypeId1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.schedulerControl1 = new DevExpress.XtraScheduler.SchedulerControl();
             this.schedulerDataStorage1 = new DevExpress.XtraScheduler.SchedulerDataStorage(this.components);
+            this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.bbiRefresh = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
             this.splitContainerControl1.SuspendLayout();
@@ -88,9 +90,10 @@
             this.bbiDelete,
             this.bbiNewEvent,
             this.bbiEditEvent,
-            this.bbiDeleteEvent});
+            this.bbiDeleteEvent,
+            this.bbiRefresh});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 22;
+            this.ribbonControl1.MaxItemId = 23;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -142,7 +145,8 @@
             // 
             this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup1,
-            this.ribbonPageGroup2});
+            this.ribbonPageGroup2,
+            this.ribbonPageGroup3});
             this.ribbonPage1.Name = "ribbonPage1";
             this.ribbonPage1.Text = "Events";
             // 
@@ -333,6 +337,19 @@
             this.schedulerDataStorage1.Appointments.Mappings.Start = "StartDate";
             this.schedulerDataStorage1.Appointments.Mappings.Subject = "Subject";
             // 
+            // ribbonPageGroup3
+            // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.bbiRefresh);
+            this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            this.ribbonPageGroup3.Text = "Calendar Action";
+            // 
+            // bbiRefresh
+            // 
+            this.bbiRefresh.Caption = "Refresh Calendar";
+            this.bbiRefresh.Id = 22;
+            this.bbiRefresh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.bbiRefresh.Name = "bbiRefresh";
+            // 
             // EventList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -390,5 +407,7 @@
         private DevExpress.XtraBars.BarButtonItem bbiNewEvent;
         private DevExpress.XtraBars.BarButtonItem bbiEditEvent;
         private DevExpress.XtraBars.BarButtonItem bbiDeleteEvent;
+        private DevExpress.XtraBars.BarButtonItem bbiRefresh;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
     }
 }

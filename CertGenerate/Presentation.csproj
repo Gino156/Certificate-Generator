@@ -154,6 +154,8 @@
     <Compile Include="Extensions\ControlExtension.cs" />
     <Compile Include="Extensions\ReportLauncher.cs" />
     <Compile Include="Extensions\GridExtension.cs" />
+    <Compile Include="Helper\DeleteEventHelper.cs" />
+    <Compile Include="Helper\HandleDatabaseException.cs" />
     <Compile Include="Helper\SearchLookupHelper.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

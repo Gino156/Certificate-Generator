@@ -11,6 +11,7 @@ using DevExpress.XtraEditors;
 using CertGenerate.Extensions;
 using Model;
 using Service.Employee;
+using CertGenerate.Helper;
 
 namespace CertGenerate.Company
 {
@@ -208,16 +209,7 @@ namespace CertGenerate.Company
                 }
                 catch (Exception ex)
                 {
-                    // Fallback sakaling sumabog sa database (Foreign Key violation exception)
-                    var innerMessage = ex.InnerException?.InnerException?.Message ?? ex.InnerException?.Message ?? ex.Message;
-                    if (innerMessage.Contains("REFERENCE constraint") || innerMessage.Contains("FK_"))
-                    {
-                        XtraMessageBox.Show("Cannot delete this Event Type because it is referenced by existing events.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        XtraMessageBox.Show($"An error occurred while deleting: {innerMessage}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    HandleDatabaseException.HandleDatabaseExc(ex);
                 }
             }
         }
@@ -227,21 +219,20 @@ namespace CertGenerate.Company
             var id = gvEvents.GetRecordId(nameof(Event.EventsId));
             if (id <= 0)
             {
-                XtraMessageBox.Show("Please select an event to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                DeleteEventHelper.ShowWarning("Please select an event to delete.");
                 return;
             }
 
-            var confirm = XtraMessageBox.Show("Are you sure you want to delete this event?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (confirm == DialogResult.Yes)
+            if (DeleteEventHelper.ShowConfirmation("Are you sure you want to delete this event?"))
             {
                 try
                 {
                     var service = new EventService();
-                    bool success = await service.DeleteAsync(id);
-                    if (success)
+                    if (await service.DeleteAsync(id))
                     {
-                        XtraMessageBox.Show("Event successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        DeleteEventHelper.ShowSuccess("Event successfully deleted.");
                         await LoadDataSource();
+                        splitContainerControl1.Collapsed = true;
                     }
                     else
                     {
@@ -250,8 +241,7 @@ namespace CertGenerate.Company
                 }
                 catch (Exception ex)
                 {
-                    var innerMessage = ex.InnerException?.InnerException?.Message ?? ex.InnerException?.Message ?? ex.Message;
-                    XtraMessageBox.Show($"Detailed Error: {innerMessage}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    HandleDatabaseException.HandleDatabaseExc(ex);
                 }
             }
         }

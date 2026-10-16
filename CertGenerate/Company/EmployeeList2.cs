@@ -162,11 +162,17 @@ namespace CertGenerate.Company
             var id = gvEmployee2.GetRecordId(nameof(Employee.EmployeeID));
             if (id <= 0)
             {
-                XtraMessageBox.Show("Please select an employee to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Please select an employee to delete.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
-            var confirm = XtraMessageBox.Show("Are you sure you want to delete this employee?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirm = XtraMessageBox.Show("Are you sure you want to delete this employee?",
+                "Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
                 try
@@ -175,18 +181,27 @@ namespace CertGenerate.Company
                     bool success = await service.DeleteAsync(id);
                     if (success)
                     {
-                        XtraMessageBox.Show("Employee successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("Employee successfully deleted.",
+                            "Success",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
                         await LoadDataSource();
                         splitContainerControl1.Collapsed = true;
                     }
                     else
                     {
-                        XtraMessageBox.Show("Failed to delete the employee.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show("Failed to delete the employee.",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
-                    XtraMessageBox.Show($"An error occurred while deleting: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show($"An error occurred while deleting: {ex.Message}",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
         }
@@ -214,18 +229,27 @@ namespace CertGenerate.Company
 
                 if (success)
                 {
-                    XtraMessageBox.Show("Employee information saved successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    XtraMessageBox.Show("Employee information saved successfully.",
+                        "Success",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                     await LoadDataSource();
                     splitContainerControl1.Collapsed = true;
                 }
                 else
                 {
-                    XtraMessageBox.Show("Failed to save employee information.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    XtraMessageBox.Show("Failed to save employee information.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"An error occurred while saving: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"An error occurred while saving: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 

@@ -124,7 +124,10 @@ namespace CertGenerate.Company
             }
             catch (Exception ex)
             {
-                XtraMessageBox.Show($"Error loading calendar: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show($"Error loading calendar: {ex.Message}",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -173,11 +176,17 @@ namespace CertGenerate.Company
             var id = gvEventType.GetRecordId(nameof(EventType.EventTypeId));
             if (id <= 0)
             {
-                XtraMessageBox.Show("Please select an event type to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Please select an event type to delete.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
-            var confirm = XtraMessageBox.Show("Are you sure you want to delete this event type?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            var confirm = XtraMessageBox.Show("Are you sure you want to delete this event type?",
+                "Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
             if (confirm == DialogResult.Yes)
             {
                 try
@@ -190,7 +199,10 @@ namespace CertGenerate.Company
 
                     if (isUsed)
                     {
-                        XtraMessageBox.Show("Cannot delete this Event Type because it is currently being used by existing Events.", "Restricted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show("Cannot delete this Event Type because it is currently being used by existing Events.",
+                            "Restricted",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                         return;
                     }
 
@@ -198,13 +210,19 @@ namespace CertGenerate.Company
                     bool success = await service.DeleteAsync(id);
                     if (success)
                     {
-                        XtraMessageBox.Show("Event Type successfully deleted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        XtraMessageBox.Show("Event Type successfully deleted.",
+                            "Success",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
                         await LoadEventTypeDataSource();
                         splitContainerControl1.Collapsed = true;
                     }
                     else
                     {
-                        XtraMessageBox.Show("Failed to delete the event type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show("Failed to delete the event type.",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
@@ -236,7 +254,10 @@ namespace CertGenerate.Company
                     }
                     else
                     {
-                        XtraMessageBox.Show("Failed to delete the event.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        XtraMessageBox.Show("Failed to delete the event.",
+                            "Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)

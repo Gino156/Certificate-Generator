@@ -49,12 +49,18 @@ namespace CertGenerate.Company
 
             if (success)
             {
-                XtraMessageBox.Show("Successfully saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                XtraMessageBox.Show("Successfully saved!",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 Close();
             }
             else
             {
-                XtraMessageBox.Show("Failed to save event type.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Failed to save event type.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
     }

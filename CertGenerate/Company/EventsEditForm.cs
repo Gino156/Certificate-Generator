@@ -92,7 +92,10 @@ namespace CertGenerate.Company
         {
             if (string.IsNullOrWhiteSpace(_event.Title))
             {
-                XtraMessageBox.Show("Please enter an event title.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Please enter an event title.",
+                    "Validation",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 txtTitle.Focus();
                 return;
             }
@@ -101,7 +104,10 @@ namespace CertGenerate.Company
 
             if (eventTypeId == 1)
             {
-                XtraMessageBox.Show("Please select an employee for this birthday event.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                XtraMessageBox.Show("Please select an employee for this birthday event.",
+                    "Validation",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
             if (eventTypeId != 5)
@@ -123,12 +129,18 @@ namespace CertGenerate.Company
 
             if (success)
             {
-                XtraMessageBox.Show("Successfully saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                XtraMessageBox.Show("Successfully saved!",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 Close();
             }
             else
             {
-                XtraMessageBox.Show("Failed to save event.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                XtraMessageBox.Show("Failed to save event.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
     }

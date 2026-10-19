@@ -133,10 +133,10 @@ namespace CertGenerate.Company
             }
             else
             {
-                XtraMessageBox.Show("Failed to save event.",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                XtraMessageBox.Show("Failed to save event.", //text     ---- Structure of XtraMessageBox Positioned Argument Alignment
+                    "Error",                                 //caption
+                    MessageBoxButtons.OK,                    //buttons
+                    MessageBoxIcon.Error);                   //icons
             }
         }
     }

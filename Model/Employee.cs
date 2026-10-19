@@ -22,5 +22,10 @@ namespace Model
         public Nullable<System.DateTime> HireDate { get; set; }
         public Nullable<bool> IsOJT { get; set; }
         public Nullable<System.DateTime> BirthDate { get; set; }
+        public string Email { get; set; }
+        public string CompanyAddress { get; set; }
+        public string TelNo { get; set; }
+        public string FaxNo { get; set; }
+        public string MobileNo { get; set; }
     }
 }

@@ -128,8 +128,8 @@ namespace CertGenerate.Company
                     ReportLauncher.ShowReport(new AbsentNotice(employees));
                     break;
 
-                case "Complete Attendance":
-                    //ReportLauncher.ShowReport(new CompleteAttendance(employees));
+                case "Calling Card":
+                    ReportLauncher.ShowReport(new CallingCard(employees));
                     break;
 
 
@@ -143,6 +143,10 @@ namespace CertGenerate.Company
             var mode = DataSourceUpdateMode.OnPropertyChanged;
             txtFullName.DataBindings.Add("EditValue", _employee, nameof(_employee.FullName), true, mode);
             txtDepartment.DataBindings.Add("EditValue", _employee, nameof(_employee.Department), true, mode);
+            txtEmail.DataBindings.Add("EditValue", _employee, nameof(_employee.Email), true, mode);
+            txtTelNo.DataBindings.Add("EditValue", _employee, nameof(_employee.TelNo), true, mode);
+            txtFaxNo.DataBindings.Add("EditValue", _employee, nameof(_employee.FaxNo), true, mode);
+            txtMobileNo.DataBindings.Add("EditValue", _employee, nameof(_employee.MobileNo), true, mode);
             txtPosition.DataBindings.Add("EditValue", _employee, nameof(_employee.Position), true, mode);
             cmbStatus.DataBindings.Add("EditValue", _employee, nameof(_employee.Status), true, mode);
             dtHireDate.DataBindings.Add("EditValue", _employee, nameof(_employee.HireDate), true, mode);

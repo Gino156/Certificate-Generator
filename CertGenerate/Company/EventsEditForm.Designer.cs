@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventsEditForm));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.sluHolidayType = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.sluEventType = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -38,17 +40,16 @@
             this.txtTitle = new DevExpress.XtraEditors.TextEdit();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.title = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.startdate = new DevExpress.XtraLayout.LayoutControlItem();
             this.enddate = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.sluHolidayType = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.layoutControlItem2 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.sluHolidayType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluEventType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -58,15 +59,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTitle.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.title)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.startdate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enddate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sluHolidayType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -81,9 +79,28 @@
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(557, 216);
+            this.layoutControl1.Size = new System.Drawing.Size(557, 180);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // sluHolidayType
+            // 
+            this.sluHolidayType.Location = new System.Drawing.Point(77, 36);
+            this.sluHolidayType.Name = "sluHolidayType";
+            this.sluHolidayType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.sluHolidayType.Properties.NullText = "";
+            this.sluHolidayType.Properties.PopupView = this.gridView1;
+            this.sluHolidayType.Size = new System.Drawing.Size(468, 20);
+            this.sluHolidayType.StyleController = this.layoutControl1;
+            this.sluHolidayType.TabIndex = 9;
+            // 
+            // gridView1
+            // 
+            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView1.Name = "gridView1";
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // sluEventType
             // 
@@ -154,7 +171,6 @@
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.title,
-            this.emptySpaceItem1,
             this.startdate,
             this.enddate,
             this.layoutControlItem4,
@@ -162,7 +178,7 @@
             this.layoutControlItem1,
             this.layoutControlItem2});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(557, 216);
+            this.Root.Size = new System.Drawing.Size(557, 180);
             this.Root.TextVisible = false;
             // 
             // title
@@ -173,14 +189,6 @@
             this.title.Size = new System.Drawing.Size(537, 24);
             this.title.Text = "Title";
             this.title.TextSize = new System.Drawing.Size(62, 13);
-            // 
-            // emptySpaceItem1
-            // 
-            this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(0, 160);
-            this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(537, 36);
-            this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // startdate
             // 
@@ -226,18 +234,6 @@
             this.layoutControlItem1.Text = "Event Type";
             this.layoutControlItem1.TextSize = new System.Drawing.Size(62, 13);
             // 
-            // sluHolidayType
-            // 
-            this.sluHolidayType.Location = new System.Drawing.Point(77, 36);
-            this.sluHolidayType.Name = "sluHolidayType";
-            this.sluHolidayType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.sluHolidayType.Properties.NullText = "";
-            this.sluHolidayType.Properties.PopupView = this.gridView1;
-            this.sluHolidayType.Size = new System.Drawing.Size(468, 20);
-            this.sluHolidayType.StyleController = this.layoutControl1;
-            this.sluHolidayType.TabIndex = 9;
-            // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.sluHolidayType;
@@ -247,24 +243,19 @@
             this.layoutControlItem2.Text = "Holiday Type";
             this.layoutControlItem2.TextSize = new System.Drawing.Size(62, 13);
             // 
-            // gridView1
-            // 
-            this.gridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
-            this.gridView1.Name = "gridView1";
-            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
-            this.gridView1.OptionsView.ShowGroupPanel = false;
-            // 
             // EventsEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 216);
+            this.ClientSize = new System.Drawing.Size(557, 180);
             this.Controls.Add(this.layoutControl1);
             this.Name = "EventsEditForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Events Form";
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.sluHolidayType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sluEventType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLookUpEdit1View)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties.CalendarTimeProperties)).EndInit();
@@ -274,15 +265,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTitle.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.title)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.startdate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enddate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sluHolidayType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -296,7 +284,6 @@
         private DevExpress.XtraEditors.DateEdit dtStartDate;
         private DevExpress.XtraEditors.TextEdit txtTitle;
         private DevExpress.XtraLayout.LayoutControlItem title;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem1;
         private DevExpress.XtraLayout.LayoutControlItem startdate;
         private DevExpress.XtraLayout.LayoutControlItem enddate;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;

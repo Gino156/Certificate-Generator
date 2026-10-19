@@ -17,6 +17,11 @@
           <Property Name="HireDate" Type="date" />
           <Property Name="IsOJT" Type="bit" />
           <Property Name="BirthDate" Type="date" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyAddress" Type="varchar" MaxLength="255" />
+          <Property Name="TelNo" Type="varchar" MaxLength="50" />
+          <Property Name="FaxNo" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -54,6 +59,11 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employees' does not have a pr
           </Key>
           <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FullName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyAddress" Type="varchar" MaxLength="255" />
+          <Property Name="TelNo" Type="varchar" MaxLength="50" />
+          <Property Name="FaxNo" Type="varchar" MaxLength="50" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="50" />
           <Property Name="Department" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Position" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
@@ -67,11 +77,14 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Events' does not have a prima
           <Key>
             <PropertyRef Name="EventsId" />
           </Key>
-          <Property Name="EventsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EventsId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="varchar" MaxLength="255" />
           <Property Name="start_date" Type="datetime" />
           <Property Name="end_date" Type="datetime" />
           <Property Name="EventTypeId" Type="int" />
+          <Property Name="EventTypeName" Type="varchar" MaxLength="255" />
+          <Property Name="HolidayTypeId" Type="int" />
+          <Property Name="HolidayTypeName" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -115,6 +128,11 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
             <DefiningQuery>SELECT 
     [vw_Employees].[EmployeeID] AS [EmployeeID], 
     [vw_Employees].[FullName] AS [FullName], 
+    [vw_Employees].[Email] AS [Email], 
+    [vw_Employees].[CompanyAddress] AS [CompanyAddress], 
+    [vw_Employees].[TelNo] AS [TelNo], 
+    [vw_Employees].[FaxNo] AS [FaxNo], 
+    [vw_Employees].[MobileNo] AS [MobileNo], 
     [vw_Employees].[Department] AS [Department], 
     [vw_Employees].[Position] AS [Position], 
     [vw_Employees].[Status] AS [Status], 
@@ -129,7 +147,10 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
     [vw_Events].[Title] AS [Title], 
     [vw_Events].[start_date] AS [start_date], 
     [vw_Events].[end_date] AS [end_date], 
-    [vw_Events].[EventTypeId] AS [EventTypeId]
+    [vw_Events].[EventTypeId] AS [EventTypeId], 
+    [vw_Events].[EventTypeName] AS [EventTypeName], 
+    [vw_Events].[HolidayTypeId] AS [HolidayTypeId], 
+    [vw_Events].[HolidayTypeName] AS [HolidayTypeName]
     FROM [dbo].[vw_Events] AS [vw_Events]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vw_EventType" EntityType="Self.vw_EventType" store:Type="Views" store:Schema="dbo">
@@ -180,6 +201,11 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <Property Name="HireDate" Type="DateTime" Precision="0" />
           <Property Name="IsOJT" Type="Boolean" />
           <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -219,6 +245,9 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <Property Name="start_date" Type="DateTime" Precision="3" />
           <Property Name="end_date" Type="DateTime" Precision="3" />
           <Property Name="EventTypeId" Type="Int32" />
+          <Property Name="EventTypeName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="HolidayTypeId" Type="Int32" />
+          <Property Name="HolidayTypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="vw_EventType">
           <Key>
@@ -266,6 +295,11 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <Property Name="HireDate" Type="DateTime" Precision="0" />
           <Property Name="IsOJT" Type="Boolean" />
           <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -276,6 +310,11 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="CertProjectDBModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+                <ScalarProperty Name="TelNo" ColumnName="TelNo" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="IsOJT" ColumnName="IsOJT" />
                 <ScalarProperty Name="HireDate" ColumnName="HireDate" />
@@ -318,6 +357,9 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <EntitySetMapping Name="vw_Events">
             <EntityTypeMapping TypeName="CertProjectDBModel.vw_Events">
               <MappingFragment StoreEntitySet="vw_Events">
+                <ScalarProperty Name="HolidayTypeName" ColumnName="HolidayTypeName" />
+                <ScalarProperty Name="HolidayTypeId" ColumnName="HolidayTypeId" />
+                <ScalarProperty Name="EventTypeName" ColumnName="EventTypeName" />
                 <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
                 <ScalarProperty Name="end_date" ColumnName="end_date" />
                 <ScalarProperty Name="start_date" ColumnName="start_date" />
@@ -337,6 +379,11 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <EntitySetMapping Name="vw_Employees">
             <EntityTypeMapping TypeName="CertProjectDBModel.vw_Employees">
               <MappingFragment StoreEntitySet="vw_Employees">
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
+                <ScalarProperty Name="TelNo" ColumnName="TelNo" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="IsOJT" ColumnName="IsOJT" />
                 <ScalarProperty Name="HireDate" ColumnName="HireDate" />

@@ -19,5 +19,8 @@ namespace Model
         public Nullable<System.DateTime> start_date { get; set; }
         public Nullable<System.DateTime> end_date { get; set; }
         public Nullable<int> EventTypeId { get; set; }
+        public string EventTypeName { get; set; }
+        public Nullable<int> HolidayTypeId { get; set; }
+        public string HolidayTypeName { get; set; }
     }
 }

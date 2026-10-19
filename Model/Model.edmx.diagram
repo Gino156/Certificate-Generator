@@ -9,11 +9,11 @@
         <EntityTypeShape EntityType="CertProjectDBModel.Event" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="CertProjectDBModel.EventType" Width="1.5" PointX="0.75" PointY="5.375" />
         <EntityTypeShape EntityType="CertProjectDBModel.HolidayType" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="CertProjectDBModel.vw_Events" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CertProjectDBModel.vw_EventType" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="CertProjectDBModel.vw_Events" Width="1.5" PointX="5.75" PointY="0.75" FillColor="Yellow" />
+        <EntityTypeShape EntityType="CertProjectDBModel.vw_EventType" Width="1.5" PointX="6.75" PointY="3.75" FillColor="Yellow" />
         <AssociationConnector Association="CertProjectDBModel.FK_Events_EventType" />
         <AssociationConnector Association="CertProjectDBModel.FK_Events_HolidayType" />
-        <EntityTypeShape EntityType="CertProjectDBModel.vw_Employees" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="CertProjectDBModel.vw_Employees" Width="1.5" PointX="5.375" PointY="6.75" FillColor="Yellow" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

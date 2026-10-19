@@ -102,13 +102,9 @@ namespace CertGenerate.Company
 
             int eventTypeId = _event.EventTypeId ?? 0;
 
-            if (eventTypeId == 1)
+            if (eventTypeId == 6)
             {
-                XtraMessageBox.Show("Please select an employee for this birthday event.",
-                    "Validation",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
+                _event.HolidayTypeId = null;
             }
             if (eventTypeId != 5)
             {

@@ -48,45 +48,18 @@ namespace CertGenerate.Company
 
         private void InitButtonActions()
         {
-            bbiNew.ItemClick += async (o, e) => //New Event Type
-            {
-                await AddEventType();
-            };
-            bbiDelete.ItemClick += async (o, e) => //Delete Event Type
-            {
-                await DeleteEventType();
-            };
-            bbiEdit.ItemClick += async (o, e) => //Edit Event Type
-            {
-                await EditEventType();
-            };
+            bbiNew.ItemClick += async (o, e) => await AddEventType(); //New Event Type
+            bbiDelete.ItemClick += async (o, e) => await DeleteEventType(); //Delete Event Type
+            bbiEdit.ItemClick += async (o, e) => await EditEventType(); //Edit Event Type
 
-            bbiNewEvent.ItemClick += async (o, e) => //New Event
-            {
-                await AddEvent();
-            };
-            bbiDeleteEvent.ItemClick += async (o, e) => //Delete Event
-            {
-                await DeleteEvent();
-            };
-            bbiEditEvent.ItemClick += async (o, e) => //Edit Event
-            {
-                await EditEvent();
-            };
+            bbiNewEvent.ItemClick += async (o, e) => await AddEvent(); //New Event
+            bbiDeleteEvent.ItemClick += async (o, e) => await DeleteEvent(); //Delete Event
+            bbiEditEvent.ItemClick += async (o, e) => await EditEvent(); //Edit Event
 
-            bbiRefresh.ItemClick += async (o, e) =>
-            {
-                await LoadCalendarAsync("Default");
-            };
+            bbiRefresh.ItemClick += async (o, e) => await LoadCalendarAsync("Default"); //Calendar
 
-            gvEventType.DoubleClick += async (o, e) =>
-            {
-                await EditEventType();
-            };
-            gvEvents.DoubleClick += async (o, e) =>
-            {
-                await EditEvent();
-            };
+            gvEventType.DoubleClick += async (o, e) => await EditEventType();
+            gvEvents.DoubleClick += async (o, e) => await EditEvent();
         }
 
         private async Task LoadCalendarAsync(string calendarType)

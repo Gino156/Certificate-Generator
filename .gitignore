@@ -7,7 +7,7 @@
 *.userosscache
 *.sln.docstates
 
-# NuGet Packages (Para hindi sumama ang mga mabibigat na packages folder)
+# NuGet Packages
 packages/
 *.nupkg
 
@@ -22,3 +22,6 @@ x86/
 .DS_Store
 Thumbs.db
 *.TMP
+
+Company/Reports/CallingCard*
+Company/Reports/COCIntern*

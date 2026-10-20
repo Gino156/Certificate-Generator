@@ -23,5 +23,5 @@ x86/
 Thumbs.db
 *.TMP
 
-Company/Reports/CallingCard*
-Company/Reports/COCIntern*
+**/Company/Reports/CallingCard*
+**/Company/Reports/COCIntern*

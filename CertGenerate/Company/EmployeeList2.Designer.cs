@@ -50,6 +50,7 @@
             this.colPosition = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colStatus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.dtEndDate = new DevExpress.XtraEditors.DateEdit();
             this.txtMobileNo = new DevExpress.XtraEditors.TextEdit();
             this.txtFaxNo = new DevExpress.XtraEditors.TextEdit();
             this.txtTelNo = new DevExpress.XtraEditors.TextEdit();
@@ -83,6 +84,7 @@
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerControl1)).BeginInit();
@@ -92,6 +94,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployee2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFaxNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTelNo.Properties)).BeginInit();
@@ -126,6 +130,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
             this.SuspendLayout();
             // 
             // ribbonControl1
@@ -196,7 +201,8 @@
             "OJT Completion",
             "Late Notice",
             "Absent Notice",
-            "Calling Card"});
+            "Calling Card",
+            "COC Intern"});
             // 
             // ribbonPage1
             // 
@@ -299,6 +305,7 @@
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.dtEndDate);
             this.layoutControl1.Controls.Add(this.txtMobileNo);
             this.layoutControl1.Controls.Add(this.txtFaxNo);
             this.layoutControl1.Controls.Add(this.txtTelNo);
@@ -318,6 +325,20 @@
             this.layoutControl1.Size = new System.Drawing.Size(0, 0);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // dtEndDate
+            // 
+            this.dtEndDate.EditValue = null;
+            this.dtEndDate.Location = new System.Drawing.Point(268, 192);
+            this.dtEndDate.MenuManager = this.ribbonControl1;
+            this.dtEndDate.Name = "dtEndDate";
+            this.dtEndDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtEndDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtEndDate.Size = new System.Drawing.Size(106, 20);
+            this.dtEndDate.StyleController = this.layoutControl1;
+            this.dtEndDate.TabIndex = 18;
             // 
             // txtMobileNo
             // 
@@ -388,7 +409,7 @@
             // tsOJT
             // 
             this.tsOJT.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.tsOJT.Location = new System.Drawing.Point(24, 209);
+            this.tsOJT.Location = new System.Drawing.Point(24, 216);
             this.tsOJT.MenuManager = this.ribbonControl1;
             this.tsOJT.Name = "tsOJT";
             this.tsOJT.Properties.OffText = "No";
@@ -479,7 +500,8 @@
             this.layoutControlItem10,
             this.layoutControlItem11,
             this.layoutControlItem12,
-            this.emptySpaceItem4});
+            this.emptySpaceItem4,
+            this.layoutControlItem13});
             this.lcg.Location = new System.Drawing.Point(0, 0);
             this.lcg.Name = "lcg";
             this.lcg.Size = new System.Drawing.Size(794, 372);
@@ -546,21 +568,21 @@
             this.emptySpaceItem5.AllowHotTrack = false;
             this.emptySpaceItem5.Location = new System.Drawing.Point(522, 144);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(16, 41);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(16, 48);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem6
             // 
             this.emptySpaceItem6.AllowHotTrack = false;
-            this.emptySpaceItem6.Location = new System.Drawing.Point(0, 207);
+            this.emptySpaceItem6.Location = new System.Drawing.Point(0, 214);
             this.emptySpaceItem6.Name = "emptySpaceItem6";
-            this.emptySpaceItem6.Size = new System.Drawing.Size(538, 141);
+            this.emptySpaceItem6.Size = new System.Drawing.Size(538, 134);
             this.emptySpaceItem6.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
             // 
             this.layoutControlItem2.Control = this.tsOJT;
-            this.layoutControlItem2.Location = new System.Drawing.Point(0, 185);
+            this.layoutControlItem2.Location = new System.Drawing.Point(0, 192);
             this.layoutControlItem2.Name = "layoutControlItem2";
             this.layoutControlItem2.Size = new System.Drawing.Size(116, 22);
             this.layoutControlItem2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
@@ -571,7 +593,7 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(116, 185);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(116, 192);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(422, 22);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
@@ -581,7 +603,7 @@
             this.simpleLabelItem1.AllowHotTrack = false;
             this.simpleLabelItem1.Location = new System.Drawing.Point(0, 168);
             this.simpleLabelItem1.Name = "simpleLabelItem1";
-            this.simpleLabelItem1.Size = new System.Drawing.Size(179, 17);
+            this.simpleLabelItem1.Size = new System.Drawing.Size(179, 24);
             this.simpleLabelItem1.Text = "Is OJT?";
             this.simpleLabelItem1.TextSize = new System.Drawing.Size(57, 13);
             // 
@@ -590,7 +612,7 @@
             this.layoutControlItem7.Control = this.dtHireDate;
             this.layoutControlItem7.Location = new System.Drawing.Point(195, 144);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(159, 41);
+            this.layoutControlItem7.Size = new System.Drawing.Size(159, 24);
             this.layoutControlItem7.Text = "HireDate";
             this.layoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem7.TextLocation = DevExpress.Utils.Locations.Left;
@@ -602,7 +624,7 @@
             this.layoutControlItem8.Control = this.dtBirthDate;
             this.layoutControlItem8.Location = new System.Drawing.Point(354, 144);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(168, 41);
+            this.layoutControlItem8.Size = new System.Drawing.Size(168, 48);
             this.layoutControlItem8.Text = "Birth Date";
             this.layoutControlItem8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
             this.layoutControlItem8.TextLocation = DevExpress.Utils.Locations.Left;
@@ -614,7 +636,7 @@
             this.emptySpaceItem1.AllowHotTrack = false;
             this.emptySpaceItem1.Location = new System.Drawing.Point(179, 144);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(16, 41);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(16, 48);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem9
@@ -661,6 +683,17 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(385, 24);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // layoutControlItem13
+            // 
+            this.layoutControlItem13.Control = this.dtEndDate;
+            this.layoutControlItem13.Location = new System.Drawing.Point(195, 168);
+            this.layoutControlItem13.Name = "layoutControlItem13";
+            this.layoutControlItem13.Size = new System.Drawing.Size(159, 24);
+            this.layoutControlItem13.Text = "End Date";
+            this.layoutControlItem13.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize;
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(44, 13);
+            this.layoutControlItem13.TextToControlDistance = 5;
+            // 
             // EmployeeList2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -677,6 +710,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployee2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtFaxNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTelNo.Properties)).EndInit();
@@ -711,6 +746,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -772,5 +808,7 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem12;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraEditors.DateEdit dtEndDate;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
     }
 }

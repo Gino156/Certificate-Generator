@@ -22,6 +22,7 @@
           <Property Name="TelNo" Type="varchar" MaxLength="50" />
           <Property Name="FaxNo" Type="varchar" MaxLength="50" />
           <Property Name="MobileNo" Type="varchar" MaxLength="50" />
+          <Property Name="EndDate" Type="date" />
         </EntityType>
         <EntityType Name="Events">
           <Key>
@@ -68,6 +69,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_Employees' does not have a pr
           <Property Name="Position" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Status" Type="nvarchar" MaxLength="50" />
           <Property Name="HireDate" Type="date" />
+          <Property Name="EndDate" Type="date" />
           <Property Name="IsOJT" Type="bit" />
           <Property Name="BirthDate" Type="date" />
         </EntityType>
@@ -137,6 +139,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
     [vw_Employees].[Position] AS [Position], 
     [vw_Employees].[Status] AS [Status], 
     [vw_Employees].[HireDate] AS [HireDate], 
+    [vw_Employees].[EndDate] AS [EndDate], 
     [vw_Employees].[IsOJT] AS [IsOJT], 
     [vw_Employees].[BirthDate] AS [BirthDate]
     FROM [dbo].[vw_Employees] AS [vw_Employees]</DefiningQuery>
@@ -206,6 +209,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <Property Name="TelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -300,6 +304,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <Property Name="TelNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -310,6 +315,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <EntitySetMapping Name="Employees">
             <EntityTypeMapping TypeName="CertProjectDBModel.Employee">
               <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
                 <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
                 <ScalarProperty Name="TelNo" ColumnName="TelNo" />
@@ -379,6 +385,7 @@ warning 6002: The table/view 'CertProjectDB.dbo.vw_EventType' does not have a pr
           <EntitySetMapping Name="vw_Employees">
             <EntityTypeMapping TypeName="CertProjectDBModel.vw_Employees">
               <MappingFragment StoreEntitySet="vw_Employees">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
                 <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />
                 <ScalarProperty Name="TelNo" ColumnName="TelNo" />

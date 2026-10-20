@@ -139,6 +139,12 @@
     <Compile Include="Company\EmployeeList2.Designer.cs">
       <DependentUpon>EmployeeList2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Company\Reports\COCIntern.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Company\Reports\COCIntern.Designer.cs">
+      <DependentUpon>COCIntern.cs</DependentUpon>
+    </Compile>
     <Compile Include="Company\Reports\FiveYearsTenure.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -191,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Company\EmployeeList2.resx">
       <DependentUpon>EmployeeList2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Company\Reports\COCIntern.resx">
+      <DependentUpon>COCIntern.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Company\Reports\FiveYearsTenure.resx">
       <DependentUpon>FiveYearsTenure.cs</DependentUpon>

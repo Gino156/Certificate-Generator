@@ -27,5 +27,6 @@ namespace Model
         public string TelNo { get; set; }
         public string FaxNo { get; set; }
         public string MobileNo { get; set; }
+        public Nullable<System.DateTime> EndDate { get; set; }
     }
 }

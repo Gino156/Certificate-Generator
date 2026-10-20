@@ -132,6 +132,16 @@ namespace CertGenerate.Company
                     ReportLauncher.ShowReport(new CallingCard(employees));
                     break;
 
+                case "COC Intern":
+                    var onlyIntern = employees
+                        .Where(emp => emp.IsOJT == true)
+                        .ToList();
+                    if(onlyIntern.Count > 0)
+                    {
+                        ReportLauncher.ShowReport(new COCIntern(onlyIntern));
+                    }
+                    break;
+
 
             }
         }
@@ -150,6 +160,7 @@ namespace CertGenerate.Company
             txtPosition.DataBindings.Add("EditValue", _employee, nameof(_employee.Position), true, mode);
             cmbStatus.DataBindings.Add("EditValue", _employee, nameof(_employee.Status), true, mode);
             dtHireDate.DataBindings.Add("EditValue", _employee, nameof(_employee.HireDate), true, mode);
+            dtEndDate.DataBindings.Add("EditValue", _employee, nameof(_employee.EndDate), true, mode);
             tsOJT.DataBindings.Add("EditValue", _employee, nameof(_employee.IsOJT), true, mode);
             dtBirthDate.DataBindings.Add("EditValue", _employee, nameof(_employee.BirthDate), true, mode);
         }

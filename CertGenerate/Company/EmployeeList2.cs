@@ -43,34 +43,20 @@ namespace CertGenerate.Company
                 btnSave.Enabled = true;
                 BindControls();
             };
-            bbiDelete.ItemClick += async (o, e) => //Delete Employee
+            bbiDelete.ItemClick += async (o, e) => await Delete(); //Delete Employee
+            bbiBulkGenerate.ItemClick += (o, e) => GenerateReport("Employee of the Month"); //Employee of the Month
+            bbiFiveYears.ItemClick += (o, e) => GenerateReport("5 Years Tenurity"); //5 Years Tenure
+            bbiDropDown.ListItemClick += (o, e) => //Dropdown Template
             {
-                await Delete();
-            };
-            bbiBulkGenerate.ItemClick += (o, e) => //Employee of the Month
-            {
-                GenerateReport("Employee of the Month");
-            };
-            bbiFiveYears.ItemClick += (o, e) => //5 Years Tenure
-            {
-                GenerateReport("5 Years Tenurity");
-            };
-            barListItem1.ListItemClick += (o, e) => //Dropdown Template
-            {
-                string selected = barListItem1.Strings[e.Index];
+                string selected = bbiDropDown.Strings[e.Index];
                 GenerateReport(selected);
             };
-
             gvEmployee2.Click += async (o, e) => //Click Employee
             {
                 await GetSelectedEmployee();
                 splitContainerControl1.Collapsed = false;
             };
-
-            btnSave.Click += async (o, e) => //Save Employee
-            {
-                await Save();
-            };
+            btnSave.Click += async (o, e) => await Save(); //Save Employee
         }
 
         private async Task GetSelectedEmployee()
@@ -140,6 +126,10 @@ namespace CertGenerate.Company
                     {
                         ReportLauncher.ShowReport(new COCIntern(onlyIntern));
                     }
+                    break;
+
+                case "Perfect Attendance":
+                    ReportLauncher.ShowReport(new PerfectAttendance(employees));
                     break;
 
 

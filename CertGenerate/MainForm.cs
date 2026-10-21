@@ -29,6 +29,7 @@ namespace CertGenerate
                 {
                     case nameof(EmployeeList2): e.Control = PrepareUserControl(new EmployeeList2()); break;
                     case nameof(EventList): e.Control = PrepareUserControl(new EventList()); break;
+                    //case nameof(PasswordList): e.Control = PrepareUserControl(new PasswordList()); break;
                 }
             };
 

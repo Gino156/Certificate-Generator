@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.aceCompany1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.aceEmployee = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.aceEvent = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.aceEvent = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
@@ -73,9 +74,17 @@
             // 
             // aceEmployee
             // 
+            this.aceEmployee.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("aceEmployee.ImageOptions.SvgImage")));
             this.aceEmployee.Name = "aceEmployee";
             this.aceEmployee.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.aceEmployee.Text = "Employees";
+            // 
+            // aceEvent
+            // 
+            this.aceEvent.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("aceEvent.ImageOptions.SvgImage")));
+            this.aceEvent.Name = "aceEvent";
+            this.aceEvent.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.aceEvent.Text = "Events";
             // 
             // documentManager1
             // 
@@ -99,12 +108,6 @@
             this.ribbon.MaxItemId = 1;
             this.ribbon.Name = "ribbon";
             this.ribbon.Size = new System.Drawing.Size(1049, 58);
-            // 
-            // aceEvent
-            // 
-            this.aceEvent.Name = "aceEvent";
-            this.aceEvent.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.aceEvent.Text = "Events";
             // 
             // MainForm
             // 

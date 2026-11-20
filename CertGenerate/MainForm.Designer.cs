@@ -118,7 +118,7 @@
             this.Controls.Add(this.ribbon);
             this.Name = "MainForm";
             this.Ribbon = this.ribbon;
-            this.Text = "Main Form";
+            this.Text = "FTP";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).EndInit();
